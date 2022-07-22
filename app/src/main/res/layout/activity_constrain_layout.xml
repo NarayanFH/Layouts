@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConstrainLayout">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+        app:title=" ">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="My Subscriptions"
+            android:textColor="@color/teal"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imvToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="5sp"
+            android:src="@drawable/ic_baseline_home_24"
+            app:tint="@color/teal"
+
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.99" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/upperConstraintId"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.63540353" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+
+            android:id="@+id/ivBackgroundColorImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:foreground="@drawable/corners"
+            app:layout_constraintBottom_toBottomOf="@id/guideline4"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPlanName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Basic Pro"
+            android:textAllCaps="true"
+            android:textColor="@color/light_green"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/basicProDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_below="@id/tvPlanName"
+            android:layout_marginHorizontal="120dp"
+            android:textStyle="bold"
+            app:dividerColor="@color/green_grey"
+            app:layout_constraintTop_toBottomOf="@id/tvPlanName" />
+
+        <TextView
+            android:id="@+id/tvPriceText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="₹ 1,499"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlanName"
+            app:layout_constraintStart_toStartOf="@+id/tvPlanName"
+            app:layout_constraintTop_toBottomOf="@+id/tvPlanName" />
+
+        <TextView
+            android:id="@+id/tvBilledDuration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvPriceText"
+            android:text="For 6 Months"
+            android:textAlignment="center"
+            android:textColor="@color/green_grey"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlanName"
+            app:layout_constraintStart_toStartOf="@+id/tvPlanName"
+            app:layout_constraintTop_toBottomOf="@+id/tvPriceText" />
+
+        <TextView
+            android:id="@+id/dateOfPurchaseText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvBilledDuration"
+            android:gravity="center"
+            android:text="Date of Purchase: 4th Jul 2022"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlanName"
+            app:layout_constraintStart_toStartOf="@+id/tvPlanName"
+            app:layout_constraintTop_toBottomOf="@+id/tvBilledDuration" />
+
+        <TextView
+            android:id="@+id/imageContentText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dateOfPurchaseText"
+            android:gravity="center"
+            android:padding="18dp"
+            android:text="Your subscription for AI-powered Financial Planning includes unlimited access to Robo Advisory, Customised Financial Plan to help you achieve your financial goals, Risk management and Online Customer Support"
+            android:textColor="@color/green_grey"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlanName"
+            app:layout_constraintStart_toStartOf="@+id/tvPlanName"
+            app:layout_constraintTop_toBottomOf="@id/dateOfPurchaseText" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/middleCV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/l_green"
+            app:cardCornerRadius="14dp"
+            app:layout_constraintBottom_toTopOf="@+id/cvUpgradeToExpert"
+            app:layout_constraintEnd_toEndOf="@+id/tvPlanName"
+            app:layout_constraintStart_toStartOf="@+id/tvPlanName"
+            app:layout_constraintTop_toBottomOf="@id/imageContentText"
+            app:layout_constraintVertical_bias="0">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/middleCardConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvServiceOffer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Details"
+                    android:textColor="@color/teal"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.019" />
+
+                <TextView
+                    android:id="@+id/statusMiddleCVText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20sp"
+                    android:padding="16dp"
+                    android:text="Status:"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/statusValText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvServiceOffer" />
+
+                <TextView
+                    android:id="@+id/statusValText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20sp"
+                    android:padding="16dp"
+                    android:text="Active"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/statusMiddleCVText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/statusMiddleCVText"
+                    app:layout_constraintTop_toTopOf="@+id/statusMiddleCVText" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_green"
+
+
+                    app:layout_constraintEnd_toEndOf="@id/statusValText"
+                    app:layout_constraintStart_toStartOf="@id/statusMiddleCVText"
+                    app:layout_constraintTop_toBottomOf="@id/statusMiddleCVText" />
+
+
+                <TextView
+                    android:id="@+id/expertCVText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+
+                    android:text="Expert:"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/statusValText"
+                    app:layout_constraintStart_toStartOf="@+id/statusMiddleCVText"
+                    app:layout_constraintTop_toBottomOf="@id/statusMiddleCVText" />
+
+                <TextView
+                    android:id="@+id/expertValText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Auto Advisory"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/statusValText"
+                    app:layout_constraintStart_toEndOf="@+id/expertCVText"
+                    app:layout_constraintTop_toBottomOf="@id/statusValText"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_green"
+
+
+                    app:layout_constraintEnd_toEndOf="@id/expertValText"
+                    app:layout_constraintStart_toStartOf="@id/expertCVText"
+
+                    app:layout_constraintTop_toBottomOf="@id/expertCVText" />
+
+
+                <TextView
+                    android:id="@+id/paymentModeCVText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+
+                    android:text="Payment Mode:"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/expertValText"
+                    app:layout_constraintStart_toStartOf="@id/expertCVText"
+                    app:layout_constraintTop_toBottomOf="@id/expertCVText"
+                    />
+
+                <TextView
+                    android:id="@+id/paymentValText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Online"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+
+                    app:layout_constraintEnd_toEndOf="@+id/expertValText"
+                    app:layout_constraintStart_toEndOf="@+id/paymentModeCVText"
+                    app:layout_constraintTop_toBottomOf="@id/expertValText"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_green"
+
+
+                    app:layout_constraintEnd_toEndOf="@id/expertValText"
+                    app:layout_constraintStart_toStartOf="@id/expertCVText"
+
+                    app:layout_constraintTop_toBottomOf="@id/paymentValText" />
+
+
+                <TextView
+                    android:id="@+id/autoRenewalCVText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Auto Renewal:"
+
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintHorizontal_bias="0.175"
+
+                    app:layout_constraintEnd_toStartOf="@id/paymentValText"
+                    app:layout_constraintStart_toStartOf="@id/paymentModeCVText"
+                    app:layout_constraintTop_toBottomOf="@id/paymentModeCVText"
+                    />
+
+                <TextView
+                    android:id="@+id/autoRenewalValText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="No"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/paymentValText"
+                    app:layout_constraintStart_toEndOf="@+id/paymentModeCVText"
+                    app:layout_constraintTop_toBottomOf="@id/paymentValText"
+                    />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_green"
+
+
+                    app:layout_constraintEnd_toEndOf="@id/paymentValText"
+                    app:layout_constraintStart_toStartOf="@id/paymentModeCVText"
+
+                    app:layout_constraintTop_toBottomOf="@id/autoRenewalValText" />
+
+
+                <TextView
+                    android:id="@+id/expiryDateCVText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Expiry Date:"
+
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                 app:layout_constraintEnd_toEndOf="@id/autoRenewalCVText"
+                    app:layout_constraintStart_toStartOf="@id/autoRenewalCVText"
+                    app:layout_constraintTop_toBottomOf="@id/autoRenewalCVText" />
+
+                <TextView
+                    android:id="@+id/expiryDateValueText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="29th Dec 2022"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/autoRenewalValText"
+                    app:layout_constraintStart_toStartOf="@id/autoRenewalValText"
+                    app:layout_constraintTop_toBottomOf="@id/autoRenewalValText"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvUpgradeToExpert"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            app:cardBackgroundColor="@color/teal"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/middleCV"
+            app:layout_constraintVertical_bias="1">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/upgradeToCVText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upgrade to"
+                    android:textColor="@color/green_grey"
+                    android:textSize="11sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.04"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.09" />
+
+                <TextView
+                    android:id="@+id/expertAdvisoryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expert Advisory"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+
+                    app:layout_constraintStart_toStartOf="@id/upgradeToCVText"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.30" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="197dp" />
+
+                <TextView
+                    android:id="@+id/bottomCVContentText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Get a dedicated financial advisor to personally help you at every stage of your financial planning. ➡️"
+                    android:textColor="@color/green_grey"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/guideline2"
+                    app:layout_constraintHorizontal_bias="0.05"
+                    app:layout_constraintStart_toStartOf="@id/expertAdvisoryText"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.73" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/bull"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/guideline2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!--    <ImageView-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="match_parent"-->
+            <!--        android:padding="2dp"-->
+            <!--        android:src="@drawable/processed" />-->
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

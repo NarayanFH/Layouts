@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_marginTop="-45dp"
+            app:cardCornerRadius="50dp">
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/teal"
+                android:gravity="center|top|fill_vertical">
+
+                <Button
+
+                    android:id="@+id/basicProText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="Basic Pro"
+                    android:textAllCaps="true"
+                    android:textColor="@color/light_green"
+                    android:textFontWeight="@android:integer/status_bar_notification_info_maxnum"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/basicProDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:layout_below="@id/basicProText"
+                    android:layout_marginHorizontal="125dp"
+                    android:textStyle="bold"
+                    app:dividerColor="@color/green_grey" />
+
+                <TextView
+                    android:id="@+id/tvPriceText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/basicProDivider"
+                    android:layout_marginTop="-1dp"
+                    android:gravity="center"
+                    android:padding="5sp"
+                    android:text="₹ 1,499"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvBilledDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@id/tvPriceText"
+
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="For 6 Months"
+                    android:textColor="@color/green_grey"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/dateOfPurchaseText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvBilledDuration"
+                    android:layout_marginTop="10dp"
+
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="Date of Purchase: 4th Jul 2022"
+
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/imageContentText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dateOfPurchaseText"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Your subscription for AI-powered Financial Planning includes unlimited access to Robo Advisory, Customised Financial Plan to help you achieve your financial goals, Risk management and Online Customer Support"
+                    android:textColor="@color/green_grey"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginRight="35dp"
+        android:background="@color/l_green"
+        app:cardCornerRadius="14dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@drawable/gradient_color"
+            android:gravity="center|top"
+            android:paddingStart="24dp"
+            android:paddingTop="15dp"
+
+
+            android:paddingEnd="24dp">
+
+            <TextView
+                android:id="@+id/tvServiceOffer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Details"
+                android:textColor="@color/teal"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvServiceOffer"
+                android:gravity="center">
+
+                <View android:layout_height="10dp" />
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="Status:"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="45dp"
+                        android:layout_height="30dp" />
+
+                    <TextView
+                        android:padding="3dip"
+                        android:text="Active"
+                        android:textSize="15dp"
+
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_margin="5sp"
+                    android:background="@color/dark_green" />
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="Expert:"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="30dp" />
+
+                    <TextView
+                        android:gravity="start"
+                        android:padding="3dip"
+                        android:text="Auto Advisory"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <View
+
+                    android:layout_height="1dp"
+                    android:layout_margin="5sp"
+                    android:background="@color/dark_green" />
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="Payment Mode:"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="30dp" />
+
+                    <TextView
+                        android:padding="3dip"
+                        android:text="Online"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_margin="5sp"
+                    android:background="@color/dark_green" />
+
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="Auto Renewal:"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="30dp" />
+
+                    <TextView
+                        android:padding="3dip"
+                        android:text="No"
+                        android:textSize="15dp"
+
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_margin="5sp"
+                    android:background="@color/dark_green" />
+
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_column="1"
+                        android:padding="3dip"
+                        android:text="Expiry Date:"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="30dp" />
+
+                    <TextView
+                        android:padding="3dip"
+                        android:text="29th Dec 2022"
+                        android:textSize="15dp"
+
+                        android:textStyle="bold" />
+                </TableRow>
+
+
+            </TableLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="555dp"
+        android:layout_marginRight="30dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/teal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/c1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upgrade to"
+                        android:textColor="@color/green_grey"
+                        android:textSize="11dp" />
+
+                    <TextView
+                        android:id="@+id/c2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/c1"
+                        android:text="Expert Advisory"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/c2"
+                        android:text="Get a dedicated financial advisor to personally help you at every stage of your financial planning. ➡️"
+                        android:textColor="@color/green_grey"
+                        android:textSize="10dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="210dp"
+                        android:layout_marginRight="-30dp"
+
+                        android:src="@drawable/bull" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <!--    <ImageView-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        android:padding="2dp"-->
+        <!--        android:src="@drawable/processed" />-->
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
+
