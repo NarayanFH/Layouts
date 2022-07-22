@@ -350,7 +350,7 @@
                 android:id="@+id/cvServiceOffer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="43dp"
+                android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 app:cardBackgroundColor="@color/l_green"

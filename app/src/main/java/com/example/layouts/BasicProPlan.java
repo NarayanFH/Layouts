@@ -62,57 +62,14 @@ public class BasicProPlan extends AppCompatActivity {
             }
         });
 
-        mBinding.imvWealthInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showBottomSheetWealthDialog();
-            }
-        });
-        mBinding.imvTaxPlanInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showBottomSheetTaxFilingDialog();
-            }
-        });
-        mBinding.imvRebalancingInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showBottomSheetRebalancingPFDialog();
-            }
-        });
+        mBinding.imvWealthInfo.setOnClickListener(v -> showBottomSheetWealthDialog());
+        mBinding.imvTaxPlanInfo.setOnClickListener(v -> showBottomSheetTaxFilingDialog());
+        mBinding.imvRebalancingInfo.setOnClickListener(v -> showBottomSheetRebalancingPFDialog());
         getProData();
         //right
         OnGestureRegisterListener onGestureRegisterListenerRightArrow = new OnGestureRegisterListener(this) {
-            public void onSwipeRight(View view) {
-//                if (pagePosition >=5) {
-//                    mBinding.imvRightArrow.setVisibility(View.INVISIBLE);
-//
-//                } else {
-//                    pagePosition = pagePosition + 1;
-//                    System.out.println("Moved Right");
-//                    System.out.println(pagePosition);
-//                    getProData();
-//                }
-            }
-
-            public void onSwipeLeft(View view) {
-//                if (pagePosition <= 0) {
-//                    Toast.makeText(BasicProPlan.this, "First Page", Toast.LENGTH_SHORT).show();
-//                } else
-//                    pagePosition = pagePosition - 1;
-//                System.out.println("Moved Left");
-//                System.out.println(pagePosition);
-//                getProData();
-            }
-
-            public void onSwipeBottom(View view) {
-            }
-
-            public void onSwipeTop(View view) {
-            }
 
             public void onClick(View view) {
-                // Do something
                 if (pagePosition > 5) {
                     mBinding.imvRightArrow.setVisibility(View.INVISIBLE);
                 } else {
@@ -123,13 +80,6 @@ public class BasicProPlan extends AppCompatActivity {
                 }
                 if (pagePosition > 0)
                     mBinding.imvLeftArrow.setVisibility(View.VISIBLE);
-
-
-            }
-
-            public boolean onLongClick(View view) {
-                // Do something
-                return true;
             }
         };
 
@@ -141,40 +91,6 @@ public class BasicProPlan extends AppCompatActivity {
         }
 
         OnGestureRegisterListener onGestureRegisterListenerLeft = new OnGestureRegisterListener(this) {
-            public void onSwipeRight(View view) {
-                if (pagePosition >= 6) {
-                    Toast.makeText(BasicProPlan.this, "Last Page", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    pagePosition = pagePosition + 1;
-                    System.out.println("Moved Right");
-                    System.out.println(pagePosition);
-                    getProData();
-                }
-            }
-
-            public void onSwipeLeft(View view) {
-                if (pagePosition <= 0) {
-                    Toast.makeText(BasicProPlan.this, "First Page", Toast.LENGTH_SHORT).show();
-
-                } else
-                    pagePosition = pagePosition - 1;
-                System.out.println("Moved Left");
-                System.out.println(pagePosition);
-                getProData();
-
-
-                // Do something
-            }
-
-            public void onSwipeBottom(View view) {
-                // Do something
-            }
-
-            public void onSwipeTop(View view) {
-                // Do something
-            }
-
             public void onClick(View view) {
                 // Do something
                 if (pagePosition <= 0) {
@@ -185,9 +101,7 @@ public class BasicProPlan extends AppCompatActivity {
                 System.out.println("Moved Left");
                 System.out.println(pagePosition);
                 getProData();
-
             }
-
             public boolean onLongClick(View view) {
                 // Do something
                 return true;
@@ -212,24 +126,17 @@ public class BasicProPlan extends AppCompatActivity {
                         args.putSerializable("ARRAYLIST", (Serializable) comparePages);
                         intent.putExtra("BUNDLE", args);
                         startActivity(intent);
-//                        Intent i = new Intent(BasicProPlan.this, PlanComparisonPages.class);
-//                        i.putExtra("pageNumbers", (ArrayList<Integer>) comparePages);
-//                        startActivity(i);
                         comparePages.clear();
                     }
-
                 } else {
                     System.out.println("Not Checked");
-                    mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.check_mark);
+                    mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.check_mark_small);
                     if (comparePages.contains(pagePosition)) {
                         comparePages.remove(pagePosition);
                     }
-
                 }
-                checkPlansIcon = !checkPlansIcon;
             }
         });
-
     }
 
     private void showBottomSheetRebalancingPFDialog() {
@@ -247,30 +154,24 @@ public class BasicProPlan extends AppCompatActivity {
     }
 
     private void getImagePosition() {
-
-        if (pagePosition == 0) {
-            mBinding.imvPlanImages.setBackgroundResource(R.drawable.my_subscription_bg);
-        }
-        if (pagePosition == 1) {
-            mBinding.imvPlanImages.setBackgroundResource(R.drawable.flower);
-        }
-        if (pagePosition == 2) {
-            mBinding.imvPlanImages.setBackgroundResource(R.drawable.classic);
-        }
-        if (pagePosition == 3) {
-            mBinding.imvPlanImages.setBackgroundResource(R.drawable.classic_pro);
-        }
-        if (pagePosition == 4) {
-            mBinding.imvPlanImages.setBackgroundResource(R.drawable.premium);
-        }
-        if (pagePosition == 5) {
-            mBinding.imvPlanImages.setBackgroundResource(R.drawable.elite);
-        }
-        if (pagePosition == 6) {
-            mBinding.imvPlanImages.setBackgroundResource(R.drawable.elite_prime);
+        switch (pagePosition) {
+            case 0:
+                mBinding.imvPlanImages.setBackgroundResource(R.drawable.my_subscription_bg);
+                break;
+            case 1:
+                mBinding.imvPlanImages.setBackgroundResource(R.drawable.flower);
+            case 2:
+                mBinding.imvPlanImages.setBackgroundResource(R.drawable.classic);
+            case 3:
+                mBinding.imvPlanImages.setBackgroundResource(R.drawable.classic_pro);
+            case 4:
+                mBinding.imvPlanImages.setBackgroundResource(R.drawable.premium);
+            case 5:
+                mBinding.imvPlanImages.setBackgroundResource(R.drawable.elite);
+            case 6:
+                mBinding.imvPlanImages.setBackgroundResource(R.drawable.elite);
         }
     }
-
 
     private void showBottomSheetDialog() {
 
@@ -347,7 +248,6 @@ public class BasicProPlan extends AppCompatActivity {
                 } else
                     plan_type_value = "Check out our excellent group of trained Wealth Managers";
 
-                System.out.println("Response From APi  ......" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).monthly_amount);
                 System.out.println("Response From APi  ......" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(1).monthly_amount);
                 mBinding.tvPlanName.setText(responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).category_name);
 
@@ -402,7 +302,6 @@ public class BasicProPlan extends AppCompatActivity {
             @Override
             public void onFailure(Call<BasicProModal> call, Throwable t) {
                 progressDialog.dismiss();
-//                setPortFolioValue.setText("Error found is : " + t.getMessage());
                 System.out.println("Error From APi  ......" + t.getMessage());
             }
         });
