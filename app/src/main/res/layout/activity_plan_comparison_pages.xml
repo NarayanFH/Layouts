@@ -29,52 +29,55 @@
         android:id="@+id/tvCol1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:text="Zero commissions on \nofferings"
+        android:paddingStart="5dp"
+        android:text="Zero commissions on\n offerings"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/imvUpperBackground" />
+        app:layout_constraintTop_toTopOf="@id/imvUpperBackground"
+        app:layout_constraintWidth_percent="0.40" />
 
     <View
         android:id="@+id/viewAfterZeroCommissionText"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="@color/green_grey"
         app:layout_constraintBottom_toBottomOf="@id/imvUpperBackground"
         app:layout_constraintStart_toEndOf="@id/tvCol1"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintWidth_percent="0.01" />
 
     <TextView
         android:id="@+id/tvPlanName1Comp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:paddingStart="6dp"
         android:text="BASIC"
         android:textColor="@color/l_green"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@id/viewAfterZeroCommissionText"
-        app:layout_constraintTop_toTopOf="@id/imvUpperBackground" />
+        app:layout_constraintTop_toTopOf="@id/imvUpperBackground"
+        app:layout_constraintWidth_percent="0.285" />
 
     <TextView
         android:id="@+id/tvPlanPrice1Comp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:text="$ 99"
+        android:paddingStart="6dp"
+        android:text="₹ 99"
         android:textColor="@color/white"
         android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@id/viewAfterZeroCommissionText"
+        app:layout_constraintStart_toStartOf="@id/tvPlanName1Comp"
         app:layout_constraintTop_toBottomOf="@id/tvPlanName1Comp" />
 
     <TextView
         android:id="@+id/tvPriceComp1Duration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="5dp"
+        android:paddingStart="6dp"
         android:text="Per Month"
         android:textColor="@color/l_green"
         android:textSize="10sp"
@@ -87,6 +90,8 @@
         android:id="@+id/viewBelowPriceComp1"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="@id/tvPriceComp1Duration"
         app:layout_constraintStart_toStartOf="@id/tvPlanPrice1Comp"
@@ -96,7 +101,8 @@
         android:id="@+id/tvBilledDurationComp1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="6dp"
+        android:paddingStart="5dp"
         android:text="Billed Half Yearly"
         android:textColor="@color/green_grey"
         android:textSize="12sp"
@@ -104,36 +110,46 @@
         app:layout_constraintStart_toStartOf="@+id/tvPlanPrice1Comp"
         app:layout_constraintTop_toBottomOf="@+id/viewBelowPriceComp1" />
 
+    <ImageView
+        android:id="@+id/imvBilledDurInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/information"
+        android:backgroundTint="@color/white"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="@id/tvPlanName1Comp"
+        app:layout_constraintTop_toBottomOf="@+id/tvBilledDurationComp1" />
+
     <View
         android:id="@+id/viewComp1Text"
-        android:layout_width="0.8dp"
-
+        android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginStart="18dp"
-        android:background="@color/white"
+        android:background="@color/green_grey"
         app:layout_constraintBottom_toBottomOf="@id/imvUpperBackground"
-        app:layout_constraintStart_toEndOf="@id/viewBelowPriceComp1"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintStart_toEndOf="@id/tvPlanName1Comp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintWidth_percent="0.01" />
 
     <TextView
         android:id="@+id/tvPlanName2Comp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:paddingStart="5dp"
         android:text="BASIC PRO"
         android:textColor="@color/l_green"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/viewComp1Text"
-        app:layout_constraintTop_toTopOf="@id/imvUpperBackground" />
+        app:layout_constraintTop_toTopOf="@id/imvUpperBackground"
+        app:layout_constraintWidth_percent="0.285" />
 
     <TextView
         android:id="@+id/tvPlanPrice2Comp"
         android:layout_width="0dp"
-
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="$ 249"
+        android:paddingStart="6dp"
+        android:text="₹ 249"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/tvPlanName2Comp"
@@ -143,9 +159,9 @@
         android:id="@+id/tvPriceComp2Duration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="5dp"
+        android:paddingStart="6dp"
         android:text="Per Month"
         android:textColor="@color/l_green"
         android:textSize="10sp"
@@ -158,23 +174,36 @@
         android:id="@+id/viewBelowPriceComp2"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="@id/tvPriceComp2Duration"
-        app:layout_constraintStart_toStartOf="@id/tvPlanPrice2Comp"
+        app:layout_constraintStart_toStartOf="@id/tvPlanName2Comp"
         app:layout_constraintTop_toBottomOf="@id/tvPlanPrice2Comp" />
 
     <TextView
         android:id="@+id/tvBilledDurationComp2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="6dp"
+        android:paddingStart="5dp"
         android:text="Billed Half Yearly"
         android:textColor="@color/green_grey"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvPlanPrice2Comp"
         app:layout_constraintTop_toBottomOf="@+id/viewBelowPriceComp2" />
+
+    <ImageView
+        android:id="@+id/imvBilledDurInfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/information"
+        android:backgroundTint="@color/white"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="@id/tvPlanName2Comp"
+        app:layout_constraintTop_toBottomOf="@+id/tvBilledDurationComp2" />
 
 
     <ImageView
@@ -242,7 +271,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvPlanTypeCompVal1"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.3" />
+                app:layout_constraintWidth_percent="0.30" />
 
             <!--    2nd row val-->
 
