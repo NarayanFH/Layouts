@@ -1,20 +1,15 @@
 package com.example.layouts;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.layouts.databinding.ActivityBasicProPlanBinding;
 import com.example.layouts.modals.BasicProModal;
@@ -38,6 +33,7 @@ public class BasicProPlan extends AppCompatActivity {
     List<Integer> comparePages = new ArrayList<>();
     BasicProModal calledModal;
 
+    @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,147 +62,36 @@ public class BasicProPlan extends AppCompatActivity {
         getProData();
         // calling api data
 
-        //right
-        OnGestureRegisterListener onGestureRegisterListenerRightArrow = new OnGestureRegisterListener(this) {
+        //Main swipe *****
+        OnGestureRegisterListener onGestureRegisterListenerMain = new OnGestureRegisterListener(this) {
+            @Override
+            public void onSwipeRight(View view) {
+                System.out.println("Swipped Right");
+                rightSwipeView();
+            }
+
+            @Override
+            public void onSwipeLeft(View view) {
+                System.out.println("Swipped Left");
+                leftSwipeView();
+            }
+
             public void onClick(View view) {
-                if (pagePosition > 5) {
-                    mBinding.imvRightArrow.setVisibility(View.INVISIBLE);
-                } else {
-                    pagePosition = pagePosition + 1;
-                    System.out.println("Moved Right");
-                    System.out.println(pagePosition);
-                    getCalledData();
-                }
-                if (pagePosition > 0)
-                    mBinding.imvLeftArrow.setVisibility(View.VISIBLE);
             }
         };
-        mBinding.cvServiceOffer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-
-            }
-        });
-
-        mBinding.cvServiceOffer.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                switch (newState) {
-                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
-                        int currentPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
-                        System.out.println(currentPosition);
-                        if (plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("Basic")) {
-                            mBinding.tvBuildStatic.setText("Billed Monthly");
-                            mBinding.ivInfoMoney.setVisibility(View.GONE);
-                            mBinding.ivMoney.setImageResource(R.drawable.my_subscription_bg);
-                        } else if (plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("Basic Pro")) {
-                            mBinding.tvBuildStatic.setText("Billed Half Monthly");
-                            mBinding.ivInfoMoney.setVisibility(View.VISIBLE);
-                            planName = plansModel.get(currentPosition).getCategory_name();
-                            planPrice = "₹ " + formatter.format(Integer.parseInt(plansModel.get(currentPosition).getMonthly_amount()));
-                            planDescription = "The payment term for this plan will be ₹1,499 every size months.";
-                            priceOne = "H1 - ₹" + formatter.format(Integer.parseInt(plansModel.get(currentPosition).getAmount().getTotal()));
-                            priceTwo = "H2 - ₹" + formatter.format(Integer.parseInt(plansModel.get(currentPosition).getAmount().getTotal()));
-                            priceThree = "";
-                            priceFour = "";
-                            mBinding.ivMoney.setImageResource(R.drawable.basic_pro);
-                        } else if (plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("Classic")
-                                || plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("Classic Plus")
-                                || plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("Premium")
-                                || plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("elite")) {
-                            mBinding.tvBuildStatic.setText("Billed Quarterly");
-                            mBinding.ivInfoMoney.setVisibility(View.VISIBLE);
-                            planName = plansModel.get(currentPosition).getCategory_name();
-                            planPrice = "₹ " + formatter.format(Integer.parseInt(plansModel.get(currentPosition).getMonthly_amount()));
-                            planDescription = "The payment term for this plan will be quarterly, that is Once in every three months.";
-                            priceOne = "Q1 - ₹" + formatter.format(plansModel.get(currentPosition).getAmount().getQ1());
-                            priceTwo = "Q2 - ₹" + formatter.format(plansModel.get(currentPosition).getAmount().getQ2());
-                            priceThree = "Q3 - ₹" + formatter.format(plansModel.get(currentPosition).getAmount().getQ3());
-                            priceFour = "Q4 - ₹" + formatter.format(plansModel.get(currentPosition).getAmount().getQ4());
-                            if (plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("Classic")) {
-                                mBinding.ivMoney.setImageResource(R.drawable.classic);
-                            } else if (plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("Classic Plus")) {
-                                mBinding.ivMoney.setImageResource(R.drawable.classic_pro);
-                            } else if (plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("Premium")) {
-                                mBinding.ivMoney.setImageResource(R.drawable.premium);
-                            } else {
-                                mBinding.ivMoney.setImageResource(R.drawable.elite);
-                            }
-                        } else if (plansModel.get(currentPosition).getCategory_name().equalsIgnoreCase("Elite Prime")) {
-                            mBinding.tvBuildStatic.setVisibility(View.GONE);
-                            mBinding.tvBuildStaticElitePrime.setVisibility(View.VISIBLE);
-                            mBinding.tvBuildStaticElitePrime.setText("Get a completely customised financial plan according to your unique requirement");
-                            mBinding.ivInfoMoney.setVisibility(View.GONE);
-                            planName = "";
-                            planPrice = "";
-                            planDescription = "";
-                            priceOne = "";
-                            priceTwo = "";
-                            priceThree = "";
-                            priceFour = "";
-                            mBinding.ivMoney.setImageResource(R.drawable.elite_prime);
-                        }
-                        mBinding.tvBasicStatic.setText(plansModel.get(currentPosition).getCategory_name());
-                        if (plansModel.get(currentPosition).getMonthly_amount().equalsIgnoreCase("Custom")) {
-                            mBinding.tvBasic.setText(plansModel.get(currentPosition).getMonthly_amount());
-                        } else {
-                            mBinding.tvBasic.setText("₹ " + formatter.format(Integer.parseInt(plansModel.get(currentPosition).getMonthly_amount())));
-                        }
-                        mBinding.tvInvestmentPortfolio.setText("₹ " + plansModel.get(currentPosition).getPortfolio_size());
-                        mBinding.scrollviewPlan.scrollTo(0, 0);
-                }
-            }
-        });
-
-        mBinding.cvServiceOffer.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                event.getAction();
-                return false;
-            }
-        });
-
-
-        mBinding.imvRightArrow.setOnTouchListener(onGestureRegisterListenerRightArrow);
-        if (pagePosition <= 0) {
-            Toast.makeText(BasicProPlan.this, "First Page", Toast.LENGTH_SHORT).show();
-            mBinding.imvLeftArrow.setVisibility(View.GONE);
-
-        }
-
-        //left arrow
-        OnGestureRegisterListener onGestureRegisterListenerLeft = new OnGestureRegisterListener(this) {
-            public void onClick(View view) {
-                // Do something
-                if (pagePosition <= 0) {
-                    Toast.makeText(BasicProPlan.this, "First Page", Toast.LENGTH_SHORT).show();
-
-                } else
-                    pagePosition = pagePosition - 1;
-                System.out.println("Moved Left");
-                System.out.println(pagePosition);
-                getCalledData();
-            }
-
-            public boolean onLongClick(View view) {
-                // Do something
-                return true;
-            }
-        };
-        mBinding.imvLeftArrow.setOnTouchListener(onGestureRegisterListenerLeft);
+        mBinding.cvServiceOffer.setOnTouchListener(onGestureRegisterListenerMain);
 
 
         mBinding.imvCheckIconComparePlans.setOnClickListener(v -> {
             checkPlansIcon = !checkPlansIcon;
             if (checkPlansIcon == true) {
                 System.out.println("Checked");
-                mBinding.imvCheckIconComparePlans.setBackgroundColor(Color.rgb(255, 0, 0));
+                mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.correct);
+//                mBinding.imvCheckIconComparePlans.setBackgroundColor(Color.rgb(255, 0, 0));
                 comparePages.add(pagePosition);
                 System.out.println(comparePages);
                 System.out.println(comparePages.size());
-                if (comparePages.size() >= 3) {
+                if (comparePages.size() >= 2) {
                     Intent intent = new Intent(BasicProPlan.this, PlanComparisonPages.class);
                     Bundle args = new Bundle();
                     args.putSerializable("ARRAYLIST", (Serializable) comparePages);
@@ -226,7 +111,40 @@ public class BasicProPlan extends AppCompatActivity {
         });
     }
 
+    private void rightSwipeView() {
+        if (pagePosition > 5) {
+            mBinding.imvRightArrow.setVisibility(View.INVISIBLE);
+        } else {
+            pagePosition = pagePosition + 1;
+            System.out.println("Moved Right");
+            System.out.println(pagePosition);
+            getCalledData();
+        }
+        if (pagePosition > 0)
+            mBinding.imvLeftArrow.setVisibility(View.VISIBLE);
+    }
+
+    private void leftSwipeView() {
+        if (pagePosition <= 0) {
+            Toast.makeText(BasicProPlan.this, "First Page", Toast.LENGTH_SHORT).show();
+
+        } else
+            pagePosition = pagePosition - 1;
+        System.out.println("Moved Left");
+        System.out.println(pagePosition);
+        getCalledData();
+    }
+
     private void getCalledData() {
+
+        if (comparePages.contains(Integer.valueOf(pagePosition))) {
+            mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.correct);
+            checkCompare = true;
+
+        } else
+            checkCompare = false;
+        mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.check_mark_small);
+
 
         if (pagePosition > 5)
             mBinding.imvRightArrow.setVisibility(View.INVISIBLE);
@@ -287,12 +205,22 @@ public class BasicProPlan extends AppCompatActivity {
             mBinding.imvWealthInfo.setVisibility(View.VISIBLE);
             mBinding.viewLinePrivateWealth.setVisibility(View.VISIBLE);
             mBinding.imvCheckPrivateWealthPlan.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.tvPrivateWealthManagement.setVisibility(View.GONE);
+            mBinding.imvWealthInfo.setVisibility(View.GONE);
+            mBinding.viewLinePrivateWealth.setVisibility(View.GONE);
+            mBinding.imvCheckPrivateWealthPlan.setVisibility(View.GONE);
         }
         if (val.taxFilling.taxFillingData == 1) {
             mBinding.tvTaxPlanning.setVisibility(View.VISIBLE);
             mBinding.imvTaxPlanInfo.setVisibility(View.VISIBLE);
             mBinding.viewLineTaxPlan.setVisibility(View.VISIBLE);
             mBinding.imvCheckTaxPlan.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.tvTaxPlanning.setVisibility(View.GONE);
+            mBinding.imvTaxPlanInfo.setVisibility(View.GONE);
+            mBinding.viewLineTaxPlan.setVisibility(View.GONE);
+            mBinding.imvCheckTaxPlan.setVisibility(View.GONE);
         }
 
         if (val.rebalancingPortfolio.rebalancingPortfolioData == 1) {
@@ -300,6 +228,11 @@ public class BasicProPlan extends AppCompatActivity {
             mBinding.imvRebalancingInfo.setVisibility(View.VISIBLE);
             mBinding.viewLineRebalancingPlan.setVisibility(View.VISIBLE);
             mBinding.imvRebalancingPlan.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.tvReBalancingPF.setVisibility(View.GONE);
+            mBinding.imvRebalancingInfo.setVisibility(View.GONE);
+            mBinding.viewLineRebalancingPlan.setVisibility(View.GONE);
+            mBinding.imvRebalancingPlan.setVisibility(View.GONE);
         }
 
         if (val.reviewFrequencyData.equals("1")) {
@@ -307,7 +240,11 @@ public class BasicProPlan extends AppCompatActivity {
             mBinding.tvReviewFrequencyDuration.setVisibility(View.VISIBLE);
             mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
             mBinding.imvCheckReviewPlan.setVisibility(View.VISIBLE);
-
+        } else {
+            mBinding.tvReviewFrequencyPlan.setVisibility(View.GONE);
+            mBinding.tvReviewFrequencyDuration.setVisibility(View.GONE);
+            mBinding.viewLineReviewPlan.setVisibility(View.GONE);
+            mBinding.imvCheckReviewPlan.setVisibility(View.GONE);
         }
         progressDialog.dismiss();
 //                mBinding.progressBar.setIndeterminate(false);
