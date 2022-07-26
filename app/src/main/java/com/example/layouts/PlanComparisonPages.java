@@ -152,7 +152,7 @@ public class PlanComparisonPages extends AppCompatActivity {
             mBottomSheetBinding.tvQ3Price.setVisibility(View.VISIBLE);
             mBottomSheetBinding.tvQ4Price.setVisibility(View.VISIBLE);
             mBottomSheetBinding.tvBSPlanName.setText(calledModal.data.plan_details.plannedDetailsArrays.get(first_page).category_name);
-            mBottomSheetBinding.tvBSPrice.setText(" | "+calledModal.data.plan_details.plannedDetailsArrays.get(first_page).monthly_amount);
+            mBottomSheetBinding.tvBSPrice.setText(" | " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).monthly_amount);
             mBottomSheetBinding.tvPaymentTermText.setText("The payment term for this plan will be quarterly, that is once in every three months.");
             mBottomSheetBinding.tvQ1Price.setText("Q1 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.Q1);
             mBottomSheetBinding.tvQ2Price.setText("Q2 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.Q2);
@@ -179,7 +179,7 @@ public class PlanComparisonPages extends AppCompatActivity {
             mBottomSheetBinding.tvQ3Price.setVisibility(View.VISIBLE);
             mBottomSheetBinding.tvQ4Price.setVisibility(View.VISIBLE);
             mBottomSheetBinding.tvBSPlanName.setText(calledModal.data.plan_details.plannedDetailsArrays.get(second_page).category_name);
-            mBottomSheetBinding.tvBSPrice.setText(" | "+calledModal.data.plan_details.plannedDetailsArrays.get(second_page).monthly_amount);
+            mBottomSheetBinding.tvBSPrice.setText(" | " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).monthly_amount);
             mBottomSheetBinding.tvPaymentTermText.setText("The payment term for this plan will be quarterly, that is once in every three months.");
             mBottomSheetBinding.tvQ1Price.setText("Q1 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.Q1);
             mBottomSheetBinding.tvQ2Price.setText("Q2 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.Q2);
@@ -219,7 +219,7 @@ public class PlanComparisonPages extends AppCompatActivity {
                     durationValue1 = "Billed Half Yearly";
                 } else if (apiVal1 == 1)
                     durationValue1 = "Monthly";
-                else if (apiVal1 ==3)
+                else if (apiVal1 == 3)
                     durationValue1 = "Quarterly";
                 else
                     durationValue1 = "No calculation added for:" + durationValue1;
@@ -237,7 +237,7 @@ public class PlanComparisonPages extends AppCompatActivity {
                     durationValue2 = "Billed Half Yearly";
                 } else if (apiVal2 == 1)
                     durationValue2 = "Monthly";
-                else if (apiVal2 ==3)
+                else if (apiVal2 == 3)
                     durationValue2 = "Quarterly";
                 else
                     durationValue2 = "No calculation added for:" + durationValue2;
@@ -290,18 +290,18 @@ public class PlanComparisonPages extends AppCompatActivity {
                     mBinding.tvRebalancingPFCompVal1.setText("❌");
                 }
 
-                if (val.riskManagement.riskManagementData ==1) {
+                if (val.riskManagement.riskManagementData == 1) {
                     mBinding.tvRiskManageCompVal1.setText("✔");
                 } else {
                     mBinding.tvRiskManageCompVal1.setText("❌");
 
                 }
-                if (val.chatWithExpert.chatWithExpertData ==1) {
+                if (val.chatWithExpert.chatWithExpertData == 1) {
                     mBinding.tvChatWithExpertCompVal1.setText("✔");
                 } else {
                     mBinding.tvChatWithExpertCompVal1.setText("❌");
                 }
-                if (val.taxAdvisory.taxAdvisoryData ==1) {
+                if (val.taxAdvisory.taxAdvisoryData == 1) {
                     mBinding.tvTaxAdvisoryCompVal1.setText("✔");
                 } else {
                     mBinding.tvTaxAdvisoryCompVal1.setText("❌");
@@ -310,17 +310,16 @@ public class PlanComparisonPages extends AppCompatActivity {
 
                 if (val.reviewFrequencyData.equals("1")) {
                     mBinding.tvReviewFrequencyCompVal1.setText("Monthly");
-                } else if(val.reviewFrequencyData.equals("3")) {
+                } else if (val.reviewFrequencyData.equals("3")) {
                     mBinding.tvReviewFrequencyCompVal1.setText("Quarterly");
-                }
-                else {
+                } else {
                     mBinding.tvReviewFrequencyCompVal1.setText("Half Yearly");
                 }
 
 
                 if (first_page == 6 || first_page == 0) {
                     mBinding.imvBilledDurInfo1.setVisibility(View.INVISIBLE);
-                }  else {
+                } else {
                     mBinding.imvBilledDurInfo1.setVisibility(View.VISIBLE);
                 }
 
@@ -354,18 +353,18 @@ public class PlanComparisonPages extends AppCompatActivity {
                     mBinding.tvRebalancingPFCompVal2.setText("❌");
                 }
 
-                if (val2.riskManagement.riskManagementData ==1) {
+                if (val2.riskManagement.riskManagementData == 1) {
                     mBinding.tvRiskManageCompVal2.setText("✔");
                 } else {
                     mBinding.tvRiskManageCompVal2.setText("❌");
 
                 }
-                if (val2.chatWithExpert.chatWithExpertData ==1) {
+                if (val2.chatWithExpert.chatWithExpertData == 1) {
                     mBinding.tvChatWithExpertCompVal2.setText("✔");
                 } else {
                     mBinding.tvChatWithExpertCompVal2.setText("❌");
                 }
-                if (val2.taxAdvisory.taxAdvisoryData ==1) {
+                if (val2.taxAdvisory.taxAdvisoryData == 1) {
                     mBinding.tvTaxAdvisoryCompVal2.setText("✔");
                 } else {
                     mBinding.tvTaxAdvisoryCompVal2.setText("❌");
@@ -373,16 +372,15 @@ public class PlanComparisonPages extends AppCompatActivity {
 
                 if (val2.reviewFrequencyData.equals("1")) {
                     mBinding.tvReviewFrequencyCompVal2.setText("Monthly");
-                } else if(val2.reviewFrequencyData.equals("3")) {
+                } else if (val2.reviewFrequencyData.equals("3")) {
                     mBinding.tvReviewFrequencyCompVal2.setText("Quarterly");
-                }
-                else {
+                } else {
                     mBinding.tvReviewFrequencyCompVal2.setText("Half Yearly");
                 }
 
                 if (second_page == 6 || second_page == 0) {
                     mBinding.imvBilledDurInfo2.setVisibility(View.INVISIBLE);
-                }  else {
+                } else {
                     mBinding.imvBilledDurInfo2.setVisibility(View.VISIBLE);
                 }
                 // 2nd page data end

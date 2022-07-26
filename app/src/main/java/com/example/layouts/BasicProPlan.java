@@ -59,13 +59,7 @@ public class BasicProPlan extends AppCompatActivity {
         });
 
         mBinding.imvBilledDurInfo.setOnClickListener(v -> showBottomSheetDialog());
-
-        mBinding.imvWealthInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showBottomSheetWealthDialog();
-            }
-        });
+        mBinding.imvWealthInfo.setOnClickListener(v -> showBottomSheetWealthDialog());
         mBinding.imvTaxPlanInfo.setOnClickListener(v -> showBottomSheetTaxFilingDialog());
         mBinding.imvRebalancingInfo.setOnClickListener(v -> showBottomSheetRebalancingPFDialog());
         getProData();
