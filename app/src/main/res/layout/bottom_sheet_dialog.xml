@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tvBSBasicPro"
+            android:id="@+id/tvBSPlanName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="2dp"
@@ -37,7 +37,7 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tvBSPerMonth"
-            app:layout_constraintStart_toEndOf="@id/tvBSBasicPro"
+            app:layout_constraintStart_toEndOf="@id/tvBSPlanName"
             app:layout_constraintTop_toTopOf="parent"
             />
 
@@ -71,28 +71,57 @@
         />
 
     <TextView
-        android:id="@+id/tvH1Price"
+        android:id="@+id/tvQ1Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:text="H1 = $ 1,499"
+        android:text="H1 - $ 1,499"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/tvPaymentTermText"
-        app:layout_constraintEnd_toStartOf="@id/tvH2Price"
+        app:layout_constraintEnd_toStartOf="@id/tvQ2Price"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         />
 
     <TextView
-        android:id="@+id/tvH2Price"
+        android:id="@+id/tvQ2Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="H2 - $ 1,499"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvQ1Price"
+        app:layout_constraintTop_toBottomOf="@id/tvPaymentTermText"
+        />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tvQ3Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="Q3 = $ 1,499"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/tvQ1Price"
+        app:layout_constraintEnd_toStartOf="@id/tvQ4Price"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tvQ4Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="2dp"
         android:text="H2 = $ 1,499"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvH1Price"
-        app:layout_constraintTop_toBottomOf="@id/tvPaymentTermText"
+        app:layout_constraintStart_toEndOf="@id/tvQ3Price"
+        app:layout_constraintTop_toBottomOf="@id/tvQ1Price"
         />
 
 

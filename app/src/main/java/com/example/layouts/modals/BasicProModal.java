@@ -26,6 +26,9 @@ public class BasicProModal {
         @SerializedName("category_name")
         public String category_name;
 
+        @SerializedName("amount")
+        public Amount amount;
+
         @SerializedName("portfolio_size")
         public String portfolio_size;
 
@@ -64,6 +67,22 @@ public class BasicProModal {
 
 
     }
+
+    public class  Amount{
+
+        @SerializedName("isquaterly")
+        public int isQuarterly;
+        @SerializedName("Q1")
+        public int Q1;
+        @SerializedName("Q2")
+        public int Q2;
+        @SerializedName("Q3")
+        public int Q3;
+        @SerializedName("Q4")
+        public int Q4;
+        @SerializedName("total")
+        public String total;
+    }
     public class FinancialPlanning {
 
         @SerializedName("data")
@@ -73,6 +92,11 @@ public class BasicProModal {
 
         @SerializedName("data")
         public int priceWealthData;
+
+        @SerializedName("meta")
+        public Meta meta;
+
+
     }
     public class TaxAdvisory {
 
@@ -83,6 +107,9 @@ public class BasicProModal {
 
         @SerializedName("data")
         public int taxFillingData;
+        
+        @SerializedName("meta")
+        public Meta meta;
     }
     public class RiskManagement {
 
@@ -93,6 +120,9 @@ public class BasicProModal {
 
         @SerializedName("data")
         public int rebalancingPortfolioData;
+
+        @SerializedName("meta")
+        public Meta meta;
     }
 
     public class ChatWithExpert {
@@ -101,5 +131,11 @@ public class BasicProModal {
         public int chatWithExpertData;
     }
 
+
+    public class Meta {
+
+        @SerializedName("app")
+        public String app;
+    }
 
 }

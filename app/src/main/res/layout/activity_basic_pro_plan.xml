@@ -125,6 +125,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/dividerBelowPrice" />
 
             <ImageView
+                android:visibility="invisible"
                 android:id="@+id/imvBilledDurInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -239,11 +240,11 @@
 
             <ImageView
                 android:id="@+id/imvPhoneCall"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/phone"
+                android:background="@drawable/phone_call_green"
                 app:layout_constraintBottom_toBottomOf="@id/imvPerson2"
                 app:layout_constraintEnd_toEndOf="@id/imvPlanImages"
                 app:layout_constraintTop_toBottomOf="@id/tvRoboAdvisoryExperts" />

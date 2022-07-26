@@ -111,7 +111,8 @@
         app:layout_constraintTop_toBottomOf="@+id/viewBelowPriceComp1" />
 
     <ImageView
-        android:id="@+id/imvBilledDurInfo"
+        android:visibility="invisible"
+        android:id="@+id/imvBilledDurInfo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -195,6 +196,7 @@
         app:layout_constraintTop_toBottomOf="@+id/viewBelowPriceComp2" />
 
     <ImageView
+        android:visibility="invisible"
         android:id="@+id/imvBilledDurInfo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -358,27 +360,47 @@
 
             <TextView
                 android:id="@+id/tvPrivateWealthCompVal1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:text="X"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvPrivateWealthCompText"
-                app:layout_constraintEnd_toEndOf="@id/tvFinancialPlanningCompVal1"
+                app:layout_constraintEnd_toStartOf="@id/imvWealthInfo1"
                 app:layout_constraintStart_toStartOf="@id/tvPlanTypeCompVal1"
                 app:layout_constraintTop_toBottomOf="@id/tvFinancialPlanningCompVal1" />
+            <ImageView
+                android:id="@+id/imvWealthInfo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/infor"
+                app:layout_constraintBottom_toBottomOf="@id/tvPrivateWealthCompText"
+                app:layout_constraintEnd_toEndOf="@id/viewVertDivision2"
+                app:layout_constraintStart_toEndOf="@id/tvPrivateWealthCompVal1"
+                app:layout_constraintTop_toBottomOf="@+id/tvFinancialPlanningCompText" />
+
 
             <TextView
                 android:id="@+id/tvPrivateWealthCompVal2"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
                 android:text="Y"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvPrivateWealthCompText"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imvWealthInfo2"
                 app:layout_constraintStart_toEndOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintTop_toBottomOf="@id/tvFinancialPlanningCompVal2" />
+                app:layout_constraintTop_toBottomOf="@id/tvFinancialPlanningCompText" />
+
+            <ImageView
+                android:id="@+id/imvWealthInfo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/infor"
+                app:layout_constraintBottom_toBottomOf="@id/tvPrivateWealthCompText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvPrivateWealthCompVal2"
+                app:layout_constraintTop_toBottomOf="@+id/tvFinancialPlanningCompText" />
 
             <TextView
                 android:id="@+id/tvRiskManageComp"
@@ -401,7 +423,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tvRiskManageComp"
                 app:layout_constraintEnd_toEndOf="@id/tvPlanTypeCompVal1"
                 app:layout_constraintStart_toStartOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintTop_toBottomOf="@id/tvPrivateWealthCompVal1" />
+                app:layout_constraintTop_toBottomOf="@id/tvPrivateWealthCompText" />
 
             <TextView
                 android:id="@+id/tvRiskManageCompVal2"
@@ -413,7 +435,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tvRiskManageComp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintTop_toBottomOf="@id/tvPrivateWealthCompVal2" />
+                app:layout_constraintTop_toBottomOf="@id/tvPrivateWealthCompText" />
 
 
             <TextView
@@ -442,27 +464,46 @@
 
             <TextView
                 android:id="@+id/tvTaxFilingVal1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="X"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvTaxFilingText"
-                app:layout_constraintEnd_toEndOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintStart_toStartOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintTop_toBottomOf="@id/tvRiskManageCompVal1" />
+                app:layout_constraintEnd_toStartOf="@id/imvTaxFilingInfo1"
+                app:layout_constraintStart_toEndOf="@id/tvTaxFilingText"
+                app:layout_constraintTop_toBottomOf="@id/tvRiskManageComp" />
+            <ImageView
+                android:id="@+id/imvTaxFilingInfo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/infor"
+                app:layout_constraintBottom_toBottomOf="@id/tvTaxFilingText"
+                app:layout_constraintEnd_toEndOf="@id/viewVertDivision2"
+                app:layout_constraintStart_toEndOf="@id/tvTaxFilingVal1"
+                app:layout_constraintTop_toBottomOf="@+id/tvRiskManageComp" />
+
 
             <TextView
                 android:id="@+id/tvTaxFilingVal2"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="X"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvTaxFilingText"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imvTaxFilingInfo2"
                 app:layout_constraintStart_toEndOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintTop_toBottomOf="@id/tvRiskManageCompVal2" />
+                app:layout_constraintTop_toBottomOf="@id/tvRiskManageComp" />
+
+            <ImageView
+                android:id="@+id/imvTaxFilingInfo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/infor"
+                app:layout_constraintBottom_toBottomOf="@id/tvTaxFilingText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvTaxFilingVal2"
+                app:layout_constraintTop_toBottomOf="@+id/tvRiskManageComp" />
+
 
             <!--    Chat with expert-->
 
@@ -477,30 +518,72 @@
                 app:layout_constraintStart_toStartOf="@id/tvPlanTypeText"
                 app:layout_constraintTop_toBottomOf="@id/tvTaxFilingText" />
 
+<!--            <TextView-->
+<!--                android:id="@+id/tvRebalancingPFCompVal1"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:padding="20dp"-->
+<!--                android:text="X"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tvRebalancingPFCompText"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/tvPlanTypeCompVal1"-->
+<!--                app:layout_constraintStart_toStartOf="@id/tvPlanTypeCompVal1"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tvTaxFilingText" />-->
+
             <TextView
                 android:id="@+id/tvRebalancingPFCompVal1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="X"
-
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvRebalancingPFCompText"
-                app:layout_constraintEnd_toEndOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintStart_toStartOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintTop_toBottomOf="@id/tvTaxFilingVal1" />
+                app:layout_constraintEnd_toStartOf="@id/imvRebalancingInfo1"
+                app:layout_constraintStart_toEndOf="@id/tvRebalancingPFCompText"
+                app:layout_constraintTop_toBottomOf="@id/tvTaxFilingText" />
+            <ImageView
+                android:id="@+id/imvRebalancingInfo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/infor"
+                app:layout_constraintBottom_toBottomOf="@id/tvRebalancingPFCompText"
+                app:layout_constraintEnd_toEndOf="@id/viewVertDivision2"
+                app:layout_constraintStart_toEndOf="@id/tvPrivateWealthCompVal1"
+                app:layout_constraintTop_toBottomOf="@+id/tvTaxFilingText" />
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvRebalancingPFCompVal2"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:padding="20dp"-->
+<!--                android:text="X"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tvRebalancingPFCompText"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@id/tvPlanTypeCompVal1"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/tvTaxFilingText" />-->
 
             <TextView
                 android:id="@+id/tvRebalancingPFCompVal2"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:padding="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="X"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tvRebalancingPFCompText"
+                app:layout_constraintEnd_toStartOf="@id/imvRebalancingInfo2"
+                app:layout_constraintStart_toStartOf="@+id/tvTaxFilingVal2"
+                app:layout_constraintTop_toBottomOf="@id/tvTaxFilingText" />
+
+            <ImageView
+                android:id="@+id/imvRebalancingInfo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/infor"
+                app:layout_constraintBottom_toBottomOf="@id/tvRebalancingPFCompText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintTop_toBottomOf="@id/tvTaxFilingVal2" />
+                app:layout_constraintStart_toEndOf="@id/tvRebalancingPFCompVal2"
+                app:layout_constraintTop_toBottomOf="@+id/tvTaxFilingText" />
+
 
             <TextView
                 android:id="@+id/tvRebalancingPFBottomCompText"
@@ -540,7 +623,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tvReviewFrequencyCompText"
                 app:layout_constraintEnd_toEndOf="@id/tvPlanTypeCompVal1"
                 app:layout_constraintStart_toStartOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintTop_toBottomOf="@id/tvRebalancingPFCompVal1" />
+                app:layout_constraintTop_toBottomOf="@id/tvRebalancingPFCompText" />
 
             <TextView
                 android:id="@+id/tvReviewFrequencyCompVal2"
@@ -552,7 +635,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tvReviewFrequencyCompText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvPlanTypeCompVal1"
-                app:layout_constraintTop_toBottomOf="@id/tvRebalancingPFCompVal2" />
+                app:layout_constraintTop_toBottomOf="@id/tvRebalancingPFCompText" />
 
             <!--    Chat with expert-->
 

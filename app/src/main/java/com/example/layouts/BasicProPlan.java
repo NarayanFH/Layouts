@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -12,6 +13,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.layouts.databinding.ActivityBasicProPlanBinding;
+import com.example.layouts.databinding.BottomSheetDialogBinding;
+import com.example.layouts.databinding.BottomSheetPlansInfoBinding;
 import com.example.layouts.modals.BasicProModal;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -56,7 +59,13 @@ public class BasicProPlan extends AppCompatActivity {
         });
 
         mBinding.imvBilledDurInfo.setOnClickListener(v -> showBottomSheetDialog());
-        mBinding.imvWealthInfo.setOnClickListener(v -> showBottomSheetWealthDialog());
+
+        mBinding.imvWealthInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showBottomSheetWealthDialog();
+            }
+        });
         mBinding.imvTaxPlanInfo.setOnClickListener(v -> showBottomSheetTaxFilingDialog());
         mBinding.imvRebalancingInfo.setOnClickListener(v -> showBottomSheetRebalancingPFDialog());
         getProData();
@@ -113,6 +122,7 @@ public class BasicProPlan extends AppCompatActivity {
 
     private void rightSwipeView() {
         if (pagePosition > 5) {
+            Toast.makeText(BasicProPlan.this, "Last Plan", Toast.LENGTH_SHORT).show();
         } else {
             pagePosition = pagePosition + 1;
             System.out.println("Moved Right");
@@ -125,7 +135,7 @@ public class BasicProPlan extends AppCompatActivity {
 
     private void leftSwipeView() {
         if (pagePosition <= 0) {
-            Toast.makeText(BasicProPlan.this, "First Page", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BasicProPlan.this, "First Plan", Toast.LENGTH_SHORT).show();
 
         } else
             pagePosition = pagePosition - 1;
@@ -137,13 +147,18 @@ public class BasicProPlan extends AppCompatActivity {
     private void getCalledData() {
         getImagePosition();
         if (comparePages.contains(Integer.valueOf(pagePosition))) {
-            mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.correct);
+//            mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.correct);
             checkCompare = true;
-
-        } else
+            checkPlansIcon = true;
+            if (checkPlansIcon) {
+                System.out.println("Checked");
+                mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.correct);
+            }
+        } else {
             checkCompare = false;
-        mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.check_mark_small);
-
+            checkPlansIcon = false;
+            mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.check_mark_small);
+        }
         mBinding.cvServiceOffer.setVisibility(View.GONE);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
@@ -176,6 +191,11 @@ public class BasicProPlan extends AppCompatActivity {
             mBinding.tvPriceDuration.setVisibility(View.GONE);
             mBinding.imvBilledDurInfo.setVisibility(View.GONE);
             mBinding.tvBilledDuration.setText("Get a completely \ncustomised financial plan \naccording to your unique \nrequirement");
+        } else if (pagePosition == 0) {
+            mBinding.imvBilledDurInfo.setVisibility(View.INVISIBLE);
+            mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
+            mBinding.tvBilledDuration.setText(durationValue);
+            mBinding.tvPriceText.setText("₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).monthly_amount);
         } else {
             mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
             mBinding.imvBilledDurInfo.setVisibility(View.VISIBLE);
@@ -241,15 +261,21 @@ public class BasicProPlan extends AppCompatActivity {
 
     private void showBottomSheetRebalancingPFDialog() {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_rebalancing_pf);
+        BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(this));
+        bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
+        mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).priceWealth.meta.app);
+        mBottomSheetBinding.tvBSHeadLine.setText("Re-balancing Portfolio");
         bottomSheetDialog.show();
     }
 
     private void showBottomSheetTaxFilingDialog() {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_tax_filling);
+        BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(this));
+        bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
+        mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).priceWealth.meta.app);
+        mBottomSheetBinding.tvBSHeadLine.setText("Tax Filing");
         bottomSheetDialog.show();
     }
 
@@ -274,19 +300,48 @@ public class BasicProPlan extends AppCompatActivity {
     }
 
     private void showBottomSheetDialog() {
-
+//        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+//        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog);
+//
+//        bottomSheetDialog.show();
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog);
+        BottomSheetDialogBinding mBottomSheetBinding = BottomSheetDialogBinding.inflate(LayoutInflater.from(this));
+        bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
-        bottomSheetDialog.show();
+        if (calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).amount.isQuarterly == 0) {
+
+            mBottomSheetBinding.tvPaymentTermText.setText("The payment term for this plan will be Rs. 1,499 \n every six months.");
+            mBottomSheetBinding.tvQ1Price.setText("H1 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).amount.total);
+            mBottomSheetBinding.tvQ2Price.setText("H2 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).amount.total);
+            mBottomSheetBinding.tvQ3Price.setVisibility(View.INVISIBLE);
+            mBottomSheetBinding.tvQ4Price.setVisibility(View.INVISIBLE);
+            bottomSheetDialog.show();
+        } else if (calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).amount.isQuarterly == 1) {
+            mBottomSheetBinding.tvQ3Price.setVisibility(View.VISIBLE);
+            mBottomSheetBinding.tvQ4Price.setVisibility(View.VISIBLE);
+            mBottomSheetBinding.tvBSPlanName.setText(calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).category_name);
+            mBottomSheetBinding.tvBSPrice.setText(" | " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).monthly_amount);
+            mBottomSheetBinding.tvPaymentTermText.setText("The payment term for this plan will be quarterly, that is once in every three months.");
+            mBottomSheetBinding.tvQ1Price.setText("Q1 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).amount.Q1);
+            mBottomSheetBinding.tvQ2Price.setText("Q2 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).amount.Q2);
+            mBottomSheetBinding.tvQ3Price.setText("Q3 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).amount.Q3);
+            mBottomSheetBinding.tvQ4Price.setText("Q4 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).amount.Q4);
+            bottomSheetDialog.show();
+        }
     }
 
     private void showBottomSheetWealthDialog() {
 
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_wealth);
+        BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(this));
+        bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
+        mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).priceWealth.meta.app);
+        mBottomSheetBinding.tvBSHeadLine.setText("Private Wealth Management");
         bottomSheetDialog.show();
+//        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+//        bottomSheetDialog.setContentView(R.layout.bottom_sheet_plans_info);
+//        bottomSheetDialog.show();
     }
 
     private void getProData() {
@@ -332,6 +387,7 @@ public class BasicProPlan extends AppCompatActivity {
                     plan_type_value = "Check out our excellent group of trained Wealth Managers";
 
                 System.out.println("Response From APi  ......" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(1).monthly_amount);
+                System.out.println("String from API call:  ......" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(1).priceWealth.meta.app);
                 mBinding.tvPlanName.setText(responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).category_name);
 
                 if (pagePosition == 6) {
@@ -339,6 +395,11 @@ public class BasicProPlan extends AppCompatActivity {
                     mBinding.tvPriceDuration.setVisibility(View.GONE);
                     mBinding.imvBilledDurInfo.setVisibility(View.GONE);
                     mBinding.tvBilledDuration.setText("Get a completely \ncustomised financial plan \naccording to your unique \nrequirement");
+                } else if (pagePosition == 0) {
+                    mBinding.imvBilledDurInfo.setVisibility(View.INVISIBLE);
+                    mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
+                    mBinding.tvBilledDuration.setText(durationValue);
+                    mBinding.tvPriceText.setText("₹ " + responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).monthly_amount);
                 } else {
                     mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
                     mBinding.imvBilledDurInfo.setVisibility(View.VISIBLE);

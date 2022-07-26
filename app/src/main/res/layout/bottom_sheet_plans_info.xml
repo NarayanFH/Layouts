@@ -7,22 +7,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/tvBSPrivateWealth"
+        android:id="@+id/tvBSHeadLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Private Wealth Management"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textStyle="bold"
-        android:textSize="28dp"
+        android:textSize="24dp"
         />
     <TextView
         android:layout_marginTop="20dp"
-        android:id="@+id/bsWealthContent"
+        android:id="@+id/tvBSContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Private Wealth Management service offered under this plan includes only Direct Mutual Funds"
-        app:layout_constraintTop_toBottomOf="@id/tvBSPrivateWealth"
+        app:layout_constraintTop_toBottomOf="@id/tvBSHeadLine"
         app:layout_constraintStart_toStartOf="parent"
         />
 
