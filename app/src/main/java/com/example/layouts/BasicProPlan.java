@@ -113,15 +113,14 @@ public class BasicProPlan extends AppCompatActivity {
 
     private void rightSwipeView() {
         if (pagePosition > 5) {
-            mBinding.imvRightArrow.setVisibility(View.INVISIBLE);
         } else {
             pagePosition = pagePosition + 1;
             System.out.println("Moved Right");
             System.out.println(pagePosition);
             getCalledData();
         }
-        if (pagePosition > 0)
-            mBinding.imvLeftArrow.setVisibility(View.VISIBLE);
+        if (pagePosition > 0) {
+        }
     }
 
     private void leftSwipeView() {
@@ -136,7 +135,7 @@ public class BasicProPlan extends AppCompatActivity {
     }
 
     private void getCalledData() {
-
+        getImagePosition();
         if (comparePages.contains(Integer.valueOf(pagePosition))) {
             mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.correct);
             checkCompare = true;
@@ -145,24 +144,12 @@ public class BasicProPlan extends AppCompatActivity {
             checkCompare = false;
         mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.check_mark_small);
 
-
-        if (pagePosition > 5)
-            mBinding.imvRightArrow.setVisibility(View.INVISIBLE);
-        else
-            mBinding.imvRightArrow.setVisibility(View.VISIBLE);
-        if (pagePosition <= 0)
-            mBinding.imvLeftArrow.setVisibility(View.INVISIBLE);
-        else
-            mBinding.imvLeftArrow.setVisibility(View.VISIBLE);
-
         mBinding.cvServiceOffer.setVisibility(View.GONE);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
         progressDialog.setCancelable(false);
         progressDialog.show();
-
 //        calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).category_name
-
         String durationValue = "No Data";
         Integer apiVal = calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).payment_frequency;
 
@@ -303,23 +290,6 @@ public class BasicProPlan extends AppCompatActivity {
     }
 
     private void getProData() {
-//        if (comparePages.contains(pagePosition)) {
-//            mBinding.imvCheckIconComparePlans.setBackgroundColor(Color.rgb(255, 0, 0));
-//            checkCompare = true;
-//
-//        } else
-//            checkCompare = false;
-//        mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.check_mark_small);
-
-
-        if (pagePosition > 5)
-            mBinding.imvRightArrow.setVisibility(View.INVISIBLE);
-        else
-            mBinding.imvRightArrow.setVisibility(View.VISIBLE);
-        if (pagePosition <= 0)
-            mBinding.imvLeftArrow.setVisibility(View.INVISIBLE);
-        else
-            mBinding.imvLeftArrow.setVisibility(View.VISIBLE);
 
         mBinding.cvServiceOffer.setVisibility(View.GONE);
         ProgressDialog progressDialog = new ProgressDialog(this);
