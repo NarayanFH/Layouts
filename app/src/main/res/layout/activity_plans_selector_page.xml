@@ -49,8 +49,8 @@
                 app:layout_constraintTop_toTopOf="@id/upperConstraintId"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivBackgroundColorImage"
+            <View
+                android:id="@+id/viewUpperBackgroundColor"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:foreground="@drawable/corners"
@@ -247,15 +247,6 @@
                 app:layout_constraintEnd_toEndOf="@id/imvPlanImages"
                 app:layout_constraintTop_toBottomOf="@id/tvRoboAdvisoryExperts" />
 
-            <!--            <Button-->
-            <!--                android:id="@+id/btnWantToComparePlans"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                app:layout_constraintBottom_toBottomOf="@id/tvWantToComparePlans"-->
-            <!--                app:layout_constraintEnd_toEndOf="@id/tvWantToComparePlans"-->
-            <!--                app:layout_constraintStart_toStartOf="@id/tvWantToComparePlans"-->
-            <!--                app:layout_constraintTop_toTopOf="@id/tvWantToComparePlans" />-->
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvWantToComparePlans"
                 android:layout_width="wrap_content"
@@ -273,33 +264,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imvPerson1" />
-            <!--            <TextView-->
-            <!--                android:id="@+id/tvWantToComparePlans"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="12dp"-->
-            <!--                android:text="Want to compare plans ?"-->
-            <!--                android:textAlignment="center"-->
-            <!--                android:textColor="@color/white"-->
-            <!--                android:textSize="14sp"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/imvPerson1" />-->
-
-            <!--            <RadioButton-->
-            <!--                android:button="null"-->
-            <!--                android:id="@+id/tvSelectAnyTwoPlans"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="12dp"-->
-            <!--                android:text="Select any two plans"-->
-            <!--                android:textAlignment="center"-->
-            <!--                android:textColor="@color/white"-->
-            <!--                android:textSize="14sp"-->
-            <!--                android:visibility="invisible"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/imvPerson1" />-->
 
             <View
                 android:id="@+id/viewUnderLineComparePlans"
@@ -319,31 +283,6 @@
                 app:layout_constraintTop_toBottomOf="@id/viewUnderLineComparePlans"
 
                 />
-
-
-            <!--        <TextView-->
-            <!--            android:id="@+id/imageContentText"-->
-            <!--            android:layout_width="0dp"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_below="@id/dateOfPurchaseText"-->
-            <!--            android:gravity="center"-->
-            <!--            android:padding="18dp"-->
-            <!--            android:text="Your subscription for AI-powered Financial Planning includes unlimited access to Robo Advisory, Customised Financial Plan to help you achieve your financial goals, Risk management and Online Customer Support"-->
-            <!--            android:textColor="@color/green_grey"-->
-            <!--            android:textSize="13sp"-->
-            <!--            android:textStyle="bold"-->
-            <!--            app:layout_constraintEnd_toEndOf="@+id/tvPlanName"-->
-            <!--            app:layout_constraintStart_toStartOf="@+id/tvPlanName"-->
-            <!--            app:layout_constraintTop_toBottomOf="@id/dateOfPurchaseText" />-->
-
-            <!--            <androidx.viewpager.widget.ViewPager-->
-            <!--                android:id="@+id/viewPagerServiceCardView"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                app:layout_constraintBottom_toBottomOf="@id/cvServiceOffer"-->
-            <!--                app:layout_constraintEnd_toEndOf="@id/cvServiceOffer"-->
-            <!--                app:layout_constraintStart_toStartOf="@id/cvServiceOffer"-->
-            <!--                app:layout_constraintTop_toTopOf="@+id/cvServiceOffer" />-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvServiceOffer"
@@ -536,7 +475,6 @@
                         app:layout_constraintTop_toTopOf="@id/tvRiskManagement" />
 
                     <View
-
                         android:id="@+id/viewLineRiskPlan"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -545,7 +483,6 @@
                         android:background="@color/dark_green"
                         app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"
                         app:layout_constraintTop_toBottomOf="@+id/tvRiskManagement" />
-
 
                     <TextView
                         android:id="@+id/tvReBalancingPF"
@@ -677,160 +614,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:textSize="12sp"
                         android:layout_marginBottom="20dp"
+                        android:padding="15dp"
                         android:background="@drawable/button_corners"
-                        android:text="     Get Started     "
+                        android:text="Get Started"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvChatExpertPlan" />
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/expertCVText"-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:padding="16dp"-->
-
-                    <!--                                android:text="Expert:"-->
-                    <!--                                android:textSize="15sp"-->
-                    <!--                                android:textStyle="bold"-->
-                    <!--                                app:layout_constraintEnd_toStartOf="@+id/statusValText"-->
-                    <!--                                app:layout_constraintStart_toStartOf="@+id/statusMiddleCVText"-->
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/statusMiddleCVText" />-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/expertValText"-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:padding="16dp"-->
-                    <!--                                android:text="Auto Advisory"-->
-                    <!--                                android:textSize="15sp"-->
-                    <!--                                android:textStyle="bold"-->
-                    <!--                                app:layout_constraintEnd_toEndOf="@+id/statusValText"-->
-                    <!--                                app:layout_constraintStart_toEndOf="@+id/expertCVText"-->
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/statusValText"-->
-                    <!--                                />-->
-
-                    <!--                            <View-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="1dp"-->
-                    <!--                                android:background="@color/dark_green"-->
-
-
-                    <!--                                app:layout_constraintEnd_toEndOf="@id/expertValText"-->
-                    <!--                                app:layout_constraintStart_toStartOf="@id/expertCVText"-->
-
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/expertCVText" />-->
-
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/paymentModeCVText"-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:padding="16dp"-->
-
-                    <!--                                android:text="Payment Mode:"-->
-                    <!--                                android:textSize="15sp"-->
-                    <!--                                android:textStyle="bold"-->
-                    <!--                                app:layout_constraintEnd_toStartOf="@id/expertValText"-->
-                    <!--                                app:layout_constraintStart_toStartOf="@id/expertCVText"-->
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/expertCVText"-->
-                    <!--                                />-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/paymentValText"-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:padding="16dp"-->
-                    <!--                                android:text="Online"-->
-                    <!--                                android:textSize="15sp"-->
-                    <!--                                android:textStyle="bold"-->
-
-                    <!--                                app:layout_constraintEnd_toEndOf="@+id/expertValText"-->
-                    <!--                                app:layout_constraintStart_toEndOf="@+id/paymentModeCVText"-->
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/expertValText"-->
-                    <!--                                />-->
-
-                    <!--                            <View-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="1dp"-->
-                    <!--                                android:background="@color/dark_green"-->
-
-
-                    <!--                                app:layout_constraintEnd_toEndOf="@id/expertValText"-->
-                    <!--                                app:layout_constraintStart_toStartOf="@id/expertCVText"-->
-
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/paymentValText" />-->
-
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/autoRenewalCVText"-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:padding="16dp"-->
-                    <!--                                android:text="Auto Renewal:"-->
-
-                    <!--                                android:textSize="15sp"-->
-                    <!--                                android:textStyle="bold"-->
-                    <!--                                app:layout_constraintHorizontal_bias="0.175"-->
-
-                    <!--                                app:layout_constraintEnd_toStartOf="@id/paymentValText"-->
-                    <!--                                app:layout_constraintStart_toStartOf="@id/paymentModeCVText"-->
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/paymentModeCVText"-->
-                    <!--                                />-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/autoRenewalValText"-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:padding="16dp"-->
-                    <!--                                android:text="No"-->
-                    <!--                                android:textSize="15sp"-->
-                    <!--                                android:textStyle="bold"-->
-                    <!--                                app:layout_constraintEnd_toEndOf="@+id/paymentValText"-->
-                    <!--                                app:layout_constraintStart_toEndOf="@+id/paymentModeCVText"-->
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/paymentValText"-->
-                    <!--                                />-->
-
-                    <!--                            <View-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="1dp"-->
-                    <!--                                android:background="@color/dark_green"-->
-
-
-                    <!--                                app:layout_constraintEnd_toEndOf="@id/paymentValText"-->
-                    <!--                                app:layout_constraintStart_toStartOf="@id/paymentModeCVText"-->
-
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/autoRenewalValText" />-->
-
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/expiryDateCVText"-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:padding="16dp"-->
-                    <!--                                android:text="Expiry Date:"-->
-
-                    <!--                                android:textSize="15sp"-->
-                    <!--                                android:textStyle="bold"-->
-                    <!--                                app:layout_constraintEnd_toEndOf="@id/autoRenewalCVText"-->
-                    <!--                                app:layout_constraintStart_toStartOf="@id/autoRenewalCVText"-->
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/autoRenewalCVText" />-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:id="@+id/expiryDateValueText"-->
-                    <!--                                android:layout_width="0dp"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:padding="16dp"-->
-                    <!--                                android:text="29th Dec 2022"-->
-                    <!--                                android:textSize="15sp"-->
-                    <!--                                android:textStyle="bold"-->
-                    <!--                                app:layout_constraintEnd_toEndOf="@id/autoRenewalValText"-->
-                    <!--                                app:layout_constraintStart_toStartOf="@id/autoRenewalValText"-->
-                    <!--                                app:layout_constraintTop_toBottomOf="@id/autoRenewalValText"-->
-                    <!--                                />-->
-
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -846,7 +639,7 @@
                 android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
                 android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivBackgroundColorImage" />
+                app:layout_constraintTop_toBottomOf="@id/viewUpperBackgroundColor" />
 
             <ImageView
                 android:id="@+id/imvRightArrow"
@@ -858,7 +651,7 @@
                 android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivBackgroundColorImage" />
+                app:layout_constraintTop_toBottomOf="@id/viewUpperBackgroundColor" />
 
             <ImageView
                 android:id="@+id/imvCheckIconComparePlans"
@@ -870,92 +663,6 @@
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@id/cvServiceOffer"
                 app:layout_constraintTop_toTopOf="@id/cvServiceOffer" />
-
-
-            <!--            <androidx.cardview.widget.CardView-->
-            <!--                android:id="@+id/cvUpgradeToExpert"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginHorizontal="20sp"-->
-            <!--                app:cardBackgroundColor="@color/teal"-->
-            <!--                app:cardCornerRadius="10dp"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@id/middleCV"-->
-            <!--                app:layout_constraintVertical_bias="1">-->
-
-
-            <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="match_parent">-->
-
-            <!--                    <TextView-->
-            <!--                        android:id="@+id/upgradeToCVText"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:text="Upgrade to"-->
-            <!--                        android:textColor="@color/green_grey"-->
-            <!--                        android:textSize="11sp"-->
-            <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                        app:layout_constraintHorizontal_bias="0.04"-->
-            <!--                        app:layout_constraintStart_toStartOf="parent"-->
-            <!--                        app:layout_constraintTop_toTopOf="parent"-->
-            <!--                        app:layout_constraintVertical_bias="0.09" />-->
-
-            <!--                    <TextView-->
-            <!--                        android:id="@+id/expertAdvisoryText"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:text="Expert Advisory"-->
-            <!--                        android:textColor="@color/white"-->
-            <!--                        android:textSize="14sp"-->
-            <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-
-
-            <!--                        app:layout_constraintStart_toStartOf="@id/upgradeToCVText"-->
-            <!--                        app:layout_constraintTop_toTopOf="parent"-->
-            <!--                        app:layout_constraintVertical_bias="0.30" />-->
-
-            <!--                    <androidx.constraintlayout.widget.Guideline-->
-            <!--                        android:id="@+id/guideline2"-->
-            <!--                        android:layout_width="wrap_content"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:orientation="vertical"-->
-            <!--                        app:layout_constraintGuide_begin="197dp" />-->
-
-            <!--                    <TextView-->
-            <!--                        android:id="@+id/bottomCVContentText"-->
-            <!--                        android:layout_width="0dp"-->
-            <!--                        android:layout_height="wrap_content"-->
-            <!--                        android:text="Get a dedicated financial advisor to personally help you at every stage of your financial planning. ➡️"-->
-            <!--                        android:textColor="@color/green_grey"-->
-            <!--                        android:textSize="10sp"-->
-            <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                        app:layout_constraintEnd_toEndOf="@id/guideline2"-->
-            <!--                        app:layout_constraintHorizontal_bias="0.05"-->
-            <!--                        app:layout_constraintStart_toStartOf="@id/expertAdvisoryText"-->
-            <!--                        app:layout_constraintTop_toTopOf="parent"-->
-            <!--                        app:layout_constraintVertical_bias="0.73" />-->
-
-            <!--                    <ImageView-->
-            <!--                        android:layout_width="0dp"-->
-            <!--                        android:layout_height="100dp"-->
-            <!--                        android:src="@drawable/bull"-->
-            <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                        app:layout_constraintStart_toStartOf="@id/guideline2" />-->
-            <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-
-            <!--                &lt;!&ndash;    <ImageView&ndash;&gt;-->
-            <!--                &lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
-            <!--                &lt;!&ndash;        android:layout_height="match_parent"&ndash;&gt;-->
-            <!--                &lt;!&ndash;        android:padding="2dp"&ndash;&gt;-->
-            <!--                &lt;!&ndash;        android:src="@drawable/processed" />&ndash;&gt;-->
-            <!--            </androidx.cardview.widget.CardView>-->
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -8,7 +8,6 @@
         android:id="@+id/imvCheckPlan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         android:src="@drawable/ic_baseline_check_circle_outline_24"
         app:layout_constraintBottom_toBottomOf="@+id/tvServiceText"
         app:layout_constraintEnd_toStartOf="@+id/tvServiceText"

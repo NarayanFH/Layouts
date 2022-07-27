@@ -22,6 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,13 +71,13 @@ public class PlansSelectorPage extends AppCompatActivity {
             @Override
             public void onSwipeRight(View view) {
                 System.out.println("Swipped Right");
-                rightSwipeView();
+                leftSwipeView();
             }
 
             @Override
             public void onSwipeLeft(View view) {
                 System.out.println("Swipped Left");
-                leftSwipeView();
+                rightSwipeView();
             }
 
             public void onClick(View view) {
@@ -106,10 +107,7 @@ public class PlansSelectorPage extends AppCompatActivity {
                 System.out.println("Un Checked");
                 System.out.println(comparePages);
                 mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.check_mark_small);
-
                 comparePages.remove(Integer.valueOf(pagePosition));
-
-
             }
         });
     }
@@ -248,7 +246,7 @@ public class PlansSelectorPage extends AppCompatActivity {
             mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
             mBinding.imvCheckReviewPlan.setVisibility(View.VISIBLE);
             mBinding.tvReviewFrequencyDuration.setText("Quarterly");
-        } else if(val.reviewFrequencyData.equals("6")) {
+        } else if (val.reviewFrequencyData.equals("6")) {
             mBinding.tvReviewFrequencyPlan.setVisibility(View.VISIBLE);
             mBinding.tvReviewFrequencyDuration.setVisibility(View.VISIBLE);
             mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
@@ -353,20 +351,15 @@ public class PlansSelectorPage extends AppCompatActivity {
         mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).priceWealth.meta.app);
         mBottomSheetBinding.tvBSHeadLine.setText("Private Wealth Management");
         bottomSheetDialog.show();
-//        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-//        bottomSheetDialog.setContentView(R.layout.bottom_sheet_plans_info);
-//        bottomSheetDialog.show();
     }
 
     private void getProData() {
-
         mBinding.cvServiceOffer.setVisibility(View.GONE);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
         progressDialog.setCancelable(false);
         progressDialog.show();
-
-
+        
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.fintoo.in/restapi/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -383,22 +376,21 @@ public class PlansSelectorPage extends AppCompatActivity {
                 calledModal = response.body();
 
                 String durationValue = "No Data";
-                Integer apiVal = responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).payment_frequency;
+                Integer paymentFrequencyValue = responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).payment_frequency;
 
-                if (apiVal == 6) {
+                if (paymentFrequencyValue == 6) {
                     durationValue = "Billed Half Yearly";
-                } else if (apiVal == 1)
+                } else if (paymentFrequencyValue == 1)
                     durationValue = "Billed Monthly";
-                else if (apiVal == 3)
+                else if (paymentFrequencyValue == 3)
                     durationValue = "Billed Quarterly";
-                else
-                    durationValue = "No calculation added for:" + durationValue;
+            
 
-                String plan_type_value = "";
+                String planTypeValue = "";
                 if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).plan_type.equals("robo_advisory")) {
-                    plan_type_value = "Robo Advisory (Chat with Experts)";
+                    planTypeValue = "Robo Advisory (Chat with Experts)";
                 } else
-                    plan_type_value = "Check out our excellent group of trained Wealth Managers";
+                    planTypeValue = "Check out our excellent group of trained Wealth Managers";
 
                 System.out.println("Response From APi  ......" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(1).monthly_amount);
                 System.out.println("String from API call:  ......" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(1).priceWealth.meta.app);
@@ -422,7 +414,7 @@ public class PlansSelectorPage extends AppCompatActivity {
                 }
                 mBinding.tvPricePortfolioSize.setText("₹ " + responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).portfolio_size);
 //                mBinding.tvBilledDuration.setText(durationValue);
-                mBinding.tvRoboAdvisoryExperts.setText(plan_type_value);
+                mBinding.tvRoboAdvisoryExperts.setText(planTypeValue);
                 PlansModel.PlannedDetailsArray val = responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition);
 
                 if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).priceWealth.priceWealthData == 1) {

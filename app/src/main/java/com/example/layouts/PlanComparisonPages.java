@@ -173,17 +173,25 @@ public class PlanComparisonPages extends AppCompatActivity {
             mBinding.imvTaxFilingInfo1.setVisibility(View.GONE);
             mBinding.imvRebalancingInfo1.setVisibility(View.GONE);
             mBinding.imvWealthInfo1.setVisibility(View.GONE);
-            mBinding.imvTaxFilingInfo2.setVisibility(View.GONE);
-            mBinding.imvRebalancingInfo2.setVisibility(View.GONE);
-            mBinding.imvWealthInfo2.setVisibility(View.GONE);
+
         } else {
             mBinding.imvTaxFilingInfo1.setVisibility(View.VISIBLE);
             mBinding.imvRebalancingInfo1.setVisibility(View.VISIBLE);
             mBinding.imvWealthInfo1.setVisibility(View.VISIBLE);
+
+        }
+
+        if(second_page==0) {
+            mBinding.imvTaxFilingInfo2.setVisibility(View.GONE);
+            mBinding.imvRebalancingInfo2.setVisibility(View.GONE);
+            mBinding.imvWealthInfo2.setVisibility(View.GONE);
+
+        } else {
             mBinding.imvTaxFilingInfo2.setVisibility(View.VISIBLE);
             mBinding.imvRebalancingInfo2.setVisibility(View.VISIBLE);
             mBinding.imvWealthInfo2.setVisibility(View.VISIBLE);
         }
+
 //        mBinding.progressBar.setIndeterminate(true);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
@@ -251,8 +259,8 @@ public class PlanComparisonPages extends AppCompatActivity {
                 mBinding.tvBilledDurationComp2.setText(durationValue2);
                 mBinding.tvPlanTypeCompVal1.setText(plan_type_value1);
                 mBinding.tvPlanTypeCompVal2.setText(plan_type_value2);
-                mBinding.tvPlanPrice1Comp.setText("₹" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).monthly_amount);
-                mBinding.tvPlanPrice2Comp.setText("₹ " + responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page).monthly_amount);
+                mBinding.tvPlanPriceComp1.setText("₹" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).monthly_amount);
+                mBinding.tvPlanPriceComp2.setText("₹ " + responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page).monthly_amount);
 
 
                 // 1st Page Plan value
@@ -377,6 +385,25 @@ public class PlanComparisonPages extends AppCompatActivity {
                 } else {
                     mBinding.imvBilledDurInfo2.setVisibility(View.VISIBLE);
                 }
+
+//                if(second_page==6)
+//                {
+//                    mBinding.tvPlanPriceComp2.setText(calledModal.data.plan_details.plannedDetailsArrays.get(second_page).monthly_amount);
+//                    mBinding.tvBilledDurationComp2.setVisibility(View.GONE);
+//                    mBinding.tvPriceComp2Duration.setVisibility(View.GONE);
+//                    mBinding.imvBilledDurInfo2.setVisibility(View.GONE);
+//                }
+//                else if(second_page==0) {
+//                    mBinding.imvBilledDurInfo2.setVisibility(View.INVISIBLE);
+//                    mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
+//                    mBinding.tvBilledDuration.setText(durationValue);
+//                    mBinding.tvPriceText.setText("₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).monthly_amount);
+//                } else {
+//                    mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
+//                    mBinding.imvBilledDurInfo.setVisibility(View.VISIBLE);
+//                    mBinding.tvBilledDuration.setText(durationValue);
+//                    mBinding.tvPriceText.setText("₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).monthly_amount);
+//                }
                 // 2nd page data end
 
                 progressDialog.dismiss();
