@@ -1,14 +1,11 @@
 package com.example.layouts;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent send = new Intent(MainActivity.this, BasicProPlan.class);
+                Intent send = new Intent(MainActivity.this, PlansSelectorPage.class);
                 startActivity(send);
             }
         });

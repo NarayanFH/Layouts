@@ -12,38 +12,38 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.layouts.databinding.ActivityBasicProPlanBinding;
+import com.example.layouts.Interface.RetroFitAPI;
+import com.example.layouts.Models.PlansModel;
+import com.example.layouts.databinding.ActivityPlansSelectorPageBinding;
 import com.example.layouts.databinding.BottomSheetDialogBinding;
 import com.example.layouts.databinding.BottomSheetPlansInfoBinding;
-import com.example.layouts.modals.BasicProModal;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class BasicProPlan extends AppCompatActivity {
-    ActivityBasicProPlanBinding mBinding;
+public class PlansSelectorPage extends AppCompatActivity {
+    ActivityPlansSelectorPageBinding mBinding;
     int pagePosition = 0;
     boolean checkCompare = false;
     boolean checkPlansIcon = false;
     List<Integer> comparePages = new ArrayList<>();
-    BasicProModal calledModal;
+    PlansModel calledModal;
 
     @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basic_pro_plan);
+        setContentView(R.layout.activity_plans_selector_page);
 
-        mBinding = ActivityBasicProPlanBinding.inflate(getLayoutInflater());
+        mBinding = ActivityPlansSelectorPageBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
 
@@ -95,7 +95,7 @@ public class BasicProPlan extends AppCompatActivity {
                 System.out.println(comparePages);
                 System.out.println(comparePages.size());
                 if (comparePages.size() >= 2) {
-                    Intent intent = new Intent(BasicProPlan.this, PlanComparisonPages.class);
+                    Intent intent = new Intent(PlansSelectorPage.this, PlanComparisonPages.class);
                     Bundle args = new Bundle();
                     args.putSerializable("ARRAYLIST", (Serializable) comparePages);
                     intent.putExtra("BUNDLE", args);
@@ -116,7 +116,7 @@ public class BasicProPlan extends AppCompatActivity {
 
     private void rightSwipeView() {
         if (pagePosition > 5) {
-            Toast.makeText(BasicProPlan.this, "Last Plan", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PlansSelectorPage.this, "Last Plan", Toast.LENGTH_SHORT).show();
         } else {
             pagePosition = pagePosition + 1;
             System.out.println("Moved Right");
@@ -129,7 +129,7 @@ public class BasicProPlan extends AppCompatActivity {
 
     private void leftSwipeView() {
         if (pagePosition <= 0) {
-            Toast.makeText(BasicProPlan.this, "First Plan", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PlansSelectorPage.this, "First Plan", Toast.LENGTH_SHORT).show();
 
         } else
             pagePosition = pagePosition - 1;
@@ -199,7 +199,7 @@ public class BasicProPlan extends AppCompatActivity {
         mBinding.tvPricePortfolioSize.setText("₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).portfolio_size);
 //                mBinding.tvBilledDuration.setText(durationValue);
         mBinding.tvRoboAdvisoryExperts.setText(plan_type_value);
-        BasicProModal.PlannedDetailsArray val = calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition);
+        PlansModel.PlannedDetailsArray val = calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition);
 
         if (calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).priceWealth.priceWealthData == 1) {
             mBinding.tvPrivateWealthManagement.setVisibility(View.VISIBLE);
@@ -353,13 +353,13 @@ public class BasicProPlan extends AppCompatActivity {
                 .build();
 
         RetroFitAPI retrofitAPI = retrofit.create(RetroFitAPI.class);
-        Call<BasicProModal> call = retrofitAPI.getProData();
+        Call<PlansModel> call = retrofitAPI.getProData();
         getImagePosition();
-        call.enqueue(new Callback<BasicProModal>() {
+        call.enqueue(new Callback<PlansModel>() {
             @Override
-            public void onResponse(Call<BasicProModal> call, Response<BasicProModal> response) {
+            public void onResponse(Call<PlansModel> call, Response<PlansModel> response) {
 
-                BasicProModal responseFromAPI = response.body();
+                PlansModel responseFromAPI = response.body();
                 calledModal = response.body();
 
                 String durationValue = "No Data";
@@ -403,7 +403,7 @@ public class BasicProPlan extends AppCompatActivity {
                 mBinding.tvPricePortfolioSize.setText("₹ " + responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).portfolio_size);
 //                mBinding.tvBilledDuration.setText(durationValue);
                 mBinding.tvRoboAdvisoryExperts.setText(plan_type_value);
-                BasicProModal.PlannedDetailsArray val = responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition);
+                PlansModel.PlannedDetailsArray val = responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition);
 
                 if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(pagePosition).priceWealth.priceWealthData == 1) {
                     mBinding.tvPrivateWealthManagement.setVisibility(View.VISIBLE);
@@ -438,7 +438,7 @@ public class BasicProPlan extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<BasicProModal> call, Throwable t) {
+            public void onFailure(Call<PlansModel> call, Throwable t) {
                 progressDialog.dismiss();
                 System.out.println("Error From APi  ......" + t.getMessage());
             }

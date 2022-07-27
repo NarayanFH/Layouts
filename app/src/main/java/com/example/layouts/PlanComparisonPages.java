@@ -9,10 +9,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.layouts.Interface.RetroFitAPI;
 import com.example.layouts.databinding.ActivityPlanComparisonPagesBinding;
 import com.example.layouts.databinding.BottomSheetDialogBinding;
 import com.example.layouts.databinding.BottomSheetPlansInfoBinding;
-import com.example.layouts.modals.BasicProModal;
+import com.example.layouts.Models.PlansModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -27,13 +28,12 @@ public class PlanComparisonPages extends AppCompatActivity {
     ActivityPlanComparisonPagesBinding mBinding;
     Integer first_page;
     Integer second_page;
-    BasicProModal calledModal;
+    PlansModel calledModal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        ArrayList<Integer> page_list = getIntent().getIntegerArrayListExtra("pageNumbers");
-
         setContentView(R.layout.activity_plan_comparison_pages);
         mBinding = ActivityPlanComparisonPagesBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
@@ -46,7 +46,6 @@ public class PlanComparisonPages extends AppCompatActivity {
         first_page = pages.get(0);
         second_page = pages.get(1);
         getProData();
-
 //        if(first_page ==0 || second_page ==0) {
 //            mBinding.imvTaxFilingInfo1.setVisibility(View.GONE);
 //            mBinding.imvRebalancingInfo1.setVisibility(View.GONE);
@@ -62,7 +61,6 @@ public class PlanComparisonPages extends AppCompatActivity {
 //            mBinding.imvRebalancingInfo2.setVisibility(View.VISIBLE);
 //            mBinding.imvWealthInfo2.setVisibility(View.VISIBLE);
 //        }
-
         mBinding.imvBilledDurInfo1.setOnClickListener(v -> showBottomSheetDialog1());
         mBinding.imvBilledDurInfo2.setOnClickListener(v -> showBottomSheetDialog2());
 
@@ -73,8 +71,6 @@ public class PlanComparisonPages extends AppCompatActivity {
         mBinding.imvTaxFilingInfo2.setOnClickListener(v -> showBottomSheetTaxFilingDialog2());
         mBinding.imvRebalancingInfo1.setOnClickListener(v -> showBottomSheetRebalancingPFDialog1());
         mBinding.imvRebalancingInfo2.setOnClickListener(v -> showBottomSheetRebalancingPFDialog2());
-
-
     }
 
     private void showBottomSheetRebalancingPFDialog2() {
@@ -203,14 +199,14 @@ public class PlanComparisonPages extends AppCompatActivity {
                 .build();
 
         RetroFitAPI retrofitAPI = retrofit.create(RetroFitAPI.class);
-        Call<BasicProModal> call = retrofitAPI.getProData();
-        call.enqueue(new Callback<BasicProModal>() {
+        Call<PlansModel> call = retrofitAPI.getProData();
+        call.enqueue(new Callback<PlansModel>() {
             @Override
-            public void onResponse(Call<BasicProModal> call, Response<BasicProModal> response) {
+            public void onResponse(Call<PlansModel> call, Response<PlansModel> response) {
 
                 Toast.makeText(PlanComparisonPages.this, "Data Loaded", Toast.LENGTH_SHORT).show();
 
-                BasicProModal responseFromAPI = response.body();
+                PlansModel responseFromAPI = response.body();
                 calledModal = response.body();
 
                 String durationValue1 = "No Data";
@@ -262,7 +258,7 @@ public class PlanComparisonPages extends AppCompatActivity {
 
 
                 // 1st Page Plan value
-                BasicProModal.PlannedDetailsArray val = responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page);
+                PlansModel.PlannedDetailsArray val = responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page);
                 if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).financialPlanning.financialPlanningData == 1) {
 //                  mBinding.tvPlanTypeCompVal1.setText("❌");
                     mBinding.tvFinancialPlanningCompVal1.setText("✔");
@@ -325,7 +321,7 @@ public class PlanComparisonPages extends AppCompatActivity {
 
 
                 //2nd page
-                BasicProModal.PlannedDetailsArray val2 = responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page);
+                PlansModel.PlannedDetailsArray val2 = responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page);
                 if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page).financialPlanning.financialPlanningData == 1) {
                     mBinding.tvFinancialPlanningCompVal2.setText("✔");
 
@@ -390,7 +386,7 @@ public class PlanComparisonPages extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<BasicProModal> call, Throwable t) {
+            public void onFailure(Call<PlansModel> call, Throwable t) {
                 progressDialog.dismiss();
 //                setPortFolioValue.setText("Error found is : " + t.getMessage());
                 System.out.println("Error From APi  ......" + t.getMessage());

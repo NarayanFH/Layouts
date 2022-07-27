@@ -5,7 +5,7 @@
     android:id="@+id/bProConstraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BasicProPlan">
+    tools:context=".PlansSelectorPage">
 
     <ScrollView
         android:id="@+id/nestedView"
@@ -86,7 +86,7 @@
 
             <TextView
                 android:id="@+id/tvPriceText"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="₹ 249"
@@ -98,11 +98,11 @@
 
             <TextView
                 android:id="@+id/tvPriceDuration"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="4dp"
                 android:text="Per Month"
                 android:textColor="@color/l_green"
                 android:textSize="12sp"
@@ -125,14 +125,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/dividerBelowPrice" />
 
             <ImageView
-                android:visibility="invisible"
+
                 android:id="@+id/imvBilledDurInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="8dp"
                 android:background="@drawable/info_blue"
                 android:backgroundTint="@color/white"
-                android:padding="5dp"
                 app:layout_constraintBottom_toBottomOf="@id/tvBilledDuration"
                 app:layout_constraintStart_toEndOf="@id/tvBilledDuration"
                 app:layout_constraintTop_toTopOf="@+id/tvBilledDuration" />
@@ -140,14 +139,11 @@
             <ImageView
                 android:id="@+id/imvPlanImages"
                 android:layout_width="120dp"
-                android:layout_height="90dp"
-
-                android:layout_marginEnd="5dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="2dp"
                 android:background="@drawable/classic"
-
-                app:layout_constraintBottom_toBottomOf="@id/tvBilledDuration"
+                app:layout_constraintBottom_toBottomOf="@id/imvBilledDurInfo"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 app:layout_constraintTop_toTopOf="@+id/tvPlanName" />
 
 
@@ -211,8 +207,8 @@
 
             <ImageView
                 android:id="@+id/imvPerson1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/img_1"
                 app:layout_constraintEnd_toStartOf="@id/imvPerson2"
@@ -221,8 +217,8 @@
 
             <ImageView
                 android:id="@+id/imvPerson2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/img_1"
                 app:layout_constraintEnd_toStartOf="@id/imvPerson3"
@@ -231,8 +227,8 @@
 
             <ImageView
                 android:id="@+id/imvPerson3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/img_1"
                 app:layout_constraintStart_toEndOf="@id/imvPerson2"
@@ -369,8 +365,10 @@
                     <TextView
                         android:id="@+id/tvServiceOffer"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="10dp"
+                        android:paddingBottom="8dp"
                         android:text="Services We Offer"
                         android:textColor="@color/teal"
                         android:textSize="18sp"
@@ -386,7 +384,7 @@
                         android:layout_marginStart="20sp"
                         android:padding="16dp"
                         android:text="Financial Planning"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@id/imvCheckFinancialPlan"
                         app:layout_constraintTop_toBottomOf="@id/tvServiceOffer" />
@@ -415,49 +413,50 @@
                         app:layout_constraintTop_toBottomOf="@+id/tvFinancialPlanning" />
 
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/tvPrivateWealthManagement"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20sp"
                         android:padding="16dp"
                         android:text="Private Wealth Management"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
-                        android:visibility="gone"
+
                         app:layout_constraintStart_toStartOf="@id/imvCheckFinancialPlan"
                         app:layout_constraintTop_toBottomOf="@id/viewLineFinancialPlanning" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:id="@+id/imvWealthInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:background="@drawable/info_blue"
                         android:backgroundTint="@color/teal"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/tvPrivateWealthManagement"
                         app:layout_constraintStart_toEndOf="@id/tvPrivateWealthManagement"
                         app:layout_constraintTop_toTopOf="@id/tvPrivateWealthManagement" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:id="@+id/imvCheckPrivateWealthPlan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:src="@drawable/correct"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/tvPrivateWealthManagement"
                         app:layout_constraintEnd_toStartOf="@+id/tvPrivateWealthManagement"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvPrivateWealthManagement" />
 
                     <View
+                        android:visibility="gone"
                         android:id="@+id/viewLinePrivateWealth"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="29dp"
                         android:background="@color/dark_green"
-                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"
                         app:layout_constraintTop_toBottomOf="@+id/tvPrivateWealthManagement" />
 
@@ -469,7 +468,7 @@
                         android:layout_marginStart="20sp"
                         android:padding="16dp"
                         android:text="Tax Plan"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:visibility="gone"
                         app:layout_constraintStart_toStartOf="@id/imvCheckTaxPlan"
@@ -477,9 +476,8 @@
 
                     <ImageView
                         android:id="@+id/imvTaxPlanInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:background="@drawable/info_blue"
                         android:backgroundTint="@color/teal"
                         android:visibility="gone"
@@ -518,7 +516,7 @@
                         android:layout_marginStart="20sp"
                         android:padding="16dp"
                         android:text="Risk Management"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@id/imvRiskPlan"
                         app:layout_constraintTop_toBottomOf="@id/viewLineTaxPlan" />
@@ -554,7 +552,7 @@
                         android:layout_marginStart="20sp"
                         android:padding="16dp"
                         android:text="Rebalancing of Portfolio"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:visibility="gone"
                         app:layout_constraintStart_toStartOf="@id/imvRebalancingPlan"
@@ -562,9 +560,8 @@
 
                     <ImageView
                         android:id="@+id/imvRebalancingInfo"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:background="@drawable/info_blue"
                         android:backgroundTint="@color/teal"
                         android:visibility="gone"
@@ -605,7 +602,7 @@
                         android:paddingStart="16dp"
                         android:text="Review Frequency"
 
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:visibility="gone"
                         app:layout_constraintStart_toStartOf="@id/imvRebalancingPlan"
@@ -657,7 +654,7 @@
 
                         android:padding="16dp"
                         android:text="Chat with Expert"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@id/tvRiskManagement"
                         app:layout_constraintTop_toBottomOf="@id/viewLineReviewPlan" />
@@ -843,9 +840,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="30dp"
-                android:visibility="invisible"
                 android:backgroundTint="@color/dark_green"
                 android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivBackgroundColorImage" />
 
@@ -856,8 +853,8 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/dark_green"
-                android:visibility="invisible"
                 android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivBackgroundColorImage" />
 

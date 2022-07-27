@@ -1,6 +1,6 @@
-package com.example.layouts;
+package com.example.layouts.Interface;
 
-import com.example.layouts.modals.BasicProModal;
+import com.example.layouts.Models.PlansModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -12,7 +12,7 @@ public interface RetroFitAPI {
     // and along with that we are passing a parameter as users
     @GET("getpricingdetails")
     //on below line we are creating a method to post our data.
-    Call<BasicProModal> getProData();
+    Call<PlansModel> getProData();
 
 //    @GET("geteaosi")
 //        Call<BasicProModal> getAll();

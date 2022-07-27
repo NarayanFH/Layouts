@@ -1,10 +1,10 @@
-package com.example.layouts.modals;
+package com.example.layouts.Models;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class BasicProModal {
+public class PlansModel {
     @SerializedName("data")
     public Data data;
 
