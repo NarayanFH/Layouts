@@ -241,6 +241,19 @@ public class PlansSelectorPage extends AppCompatActivity {
             mBinding.tvReviewFrequencyDuration.setVisibility(View.VISIBLE);
             mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
             mBinding.imvCheckReviewPlan.setVisibility(View.VISIBLE);
+            mBinding.tvReviewFrequencyDuration.setText("Monthly");
+        } else if (val.reviewFrequencyData.equals("3")) {
+            mBinding.tvReviewFrequencyPlan.setVisibility(View.VISIBLE);
+            mBinding.tvReviewFrequencyDuration.setVisibility(View.VISIBLE);
+            mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
+            mBinding.imvCheckReviewPlan.setVisibility(View.VISIBLE);
+            mBinding.tvReviewFrequencyDuration.setText("Quarterly");
+        } else if(val.reviewFrequencyData.equals("6")) {
+            mBinding.tvReviewFrequencyPlan.setVisibility(View.VISIBLE);
+            mBinding.tvReviewFrequencyDuration.setVisibility(View.VISIBLE);
+            mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
+            mBinding.imvCheckReviewPlan.setVisibility(View.VISIBLE);
+            mBinding.tvReviewFrequencyDuration.setText("Half Yearly");
         } else {
             mBinding.tvReviewFrequencyPlan.setVisibility(View.GONE);
             mBinding.tvReviewFrequencyDuration.setVisibility(View.GONE);
@@ -432,13 +445,29 @@ public class PlansSelectorPage extends AppCompatActivity {
                     mBinding.imvRebalancingPlan.setVisibility(View.VISIBLE);
                 }
 
-                if (val.reviewFrequencyData.equals("1")) {
-                    mBinding.tvReviewFrequencyPlan.setVisibility(View.VISIBLE);
-                    mBinding.tvReviewFrequencyDuration.setVisibility(View.VISIBLE);
-                    mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
-                    mBinding.imvCheckReviewPlan.setVisibility(View.VISIBLE);
-
-                }
+//                if (val.reviewFrequencyData.equals("1")) {
+//                    mBinding.tvReviewFrequencyPlan.setVisibility(View.VISIBLE);
+//                    mBinding.tvReviewFrequencyDuration.setVisibility(View.VISIBLE);
+//                    mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
+//                    mBinding.imvCheckReviewPlan.setVisibility(View.VISIBLE);
+//                    mBinding.tvReviewFrequencyDuration.setText("Monthly");
+//                } else if (val.reviewFrequencyData.equals("3")) {
+//                    mBinding.tvReviewFrequencyPlan.setVisibility(View.VISIBLE);
+//                    mBinding.tvReviewFrequencyDuration.setVisibility(View.VISIBLE);
+//                    mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
+//                    mBinding.imvCheckReviewPlan.setVisibility(View.VISIBLE);
+//                    mBinding.tvReviewFrequencyDuration.setText("Quarterly");
+//                } else {
+//                    mBinding.tvReviewFrequencyPlan.setVisibility(View.VISIBLE);
+//                    mBinding.tvReviewFrequencyDuration.setVisibility(View.VISIBLE);
+//                    mBinding.viewLineReviewPlan.setVisibility(View.VISIBLE);
+//                    mBinding.imvCheckReviewPlan.setVisibility(View.VISIBLE);
+//                    mBinding.tvReviewFrequencyDuration.setText("Half Yearly");
+//                }
+//                if (val.reviewFrequencyData.equals("1")) {
+//
+//
+//                }
                 progressDialog.dismiss();
 //                mBinding.progressBar.setIndeterminate(false);
                 mBinding.cvServiceOffer.setVisibility(View.VISIBLE);
