@@ -38,29 +38,12 @@ public class PlanComparisonPages extends AppCompatActivity {
         mBinding = ActivityPlanComparisonPagesBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
-
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
         ArrayList<Integer> pages = (ArrayList<Integer>) args.getSerializable("ARRAYLIST");
-
         first_page = pages.get(0);
         second_page = pages.get(1);
         getProData();
-//        if(first_page ==0 || second_page ==0) {
-//            mBinding.imvTaxFilingInfo1.setVisibility(View.GONE);
-//            mBinding.imvRebalancingInfo1.setVisibility(View.GONE);
-//            mBinding.imvWealthInfo1.setVisibility(View.GONE);
-//            mBinding.imvTaxFilingInfo2.setVisibility(View.GONE);
-//            mBinding.imvRebalancingInfo2.setVisibility(View.GONE);
-//            mBinding.imvWealthInfo2.setVisibility(View.GONE);
-//        } else {
-//            mBinding.imvTaxFilingInfo1.setVisibility(View.VISIBLE);
-//            mBinding.imvRebalancingInfo1.setVisibility(View.VISIBLE);
-//            mBinding.imvWealthInfo1.setVisibility(View.VISIBLE);
-//            mBinding.imvTaxFilingInfo2.setVisibility(View.VISIBLE);
-//            mBinding.imvRebalancingInfo2.setVisibility(View.VISIBLE);
-//            mBinding.imvWealthInfo2.setVisibility(View.VISIBLE);
-//        }
         mBinding.imvBilledDurInfo1.setOnClickListener(v -> showBottomSheetDialog1());
         mBinding.imvBilledDurInfo2.setOnClickListener(v -> showBottomSheetDialog2());
 
@@ -186,6 +169,21 @@ public class PlanComparisonPages extends AppCompatActivity {
     }
 
     private void getProData() {
+        if(first_page==0) {
+            mBinding.imvTaxFilingInfo1.setVisibility(View.GONE);
+            mBinding.imvRebalancingInfo1.setVisibility(View.GONE);
+            mBinding.imvWealthInfo1.setVisibility(View.GONE);
+            mBinding.imvTaxFilingInfo2.setVisibility(View.GONE);
+            mBinding.imvRebalancingInfo2.setVisibility(View.GONE);
+            mBinding.imvWealthInfo2.setVisibility(View.GONE);
+        } else {
+            mBinding.imvTaxFilingInfo1.setVisibility(View.VISIBLE);
+            mBinding.imvRebalancingInfo1.setVisibility(View.VISIBLE);
+            mBinding.imvWealthInfo1.setVisibility(View.VISIBLE);
+            mBinding.imvTaxFilingInfo2.setVisibility(View.VISIBLE);
+            mBinding.imvRebalancingInfo2.setVisibility(View.VISIBLE);
+            mBinding.imvWealthInfo2.setVisibility(View.VISIBLE);
+        }
 //        mBinding.progressBar.setIndeterminate(true);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
@@ -384,7 +382,6 @@ public class PlanComparisonPages extends AppCompatActivity {
                 progressDialog.dismiss();
 
             }
-
             @Override
             public void onFailure(Call<PlansModel> call, Throwable t) {
                 progressDialog.dismiss();

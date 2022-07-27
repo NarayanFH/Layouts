@@ -139,7 +139,7 @@ public class PlansSelectorPage extends AppCompatActivity {
     }
 
     private void getCalledData() {
-        getImagePosition();
+
         if (comparePages.contains(Integer.valueOf(pagePosition))) {
 //            mBinding.imvCheckIconComparePlans.setBackgroundResource(R.drawable.correct);
             checkCompare = true;
@@ -250,6 +250,7 @@ public class PlansSelectorPage extends AppCompatActivity {
         progressDialog.dismiss();
 //                mBinding.progressBar.setIndeterminate(false);
         mBinding.cvServiceOffer.setVisibility(View.VISIBLE);
+        getImagePosition();
 
     }
 
@@ -280,16 +281,22 @@ public class PlansSelectorPage extends AppCompatActivity {
                 break;
             case 1:
                 mBinding.imvPlanImages.setBackgroundResource(R.drawable.flower);
+                break;
             case 2:
                 mBinding.imvPlanImages.setBackgroundResource(R.drawable.classic);
+                break;
             case 3:
                 mBinding.imvPlanImages.setBackgroundResource(R.drawable.classic_pro);
+                break;
             case 4:
                 mBinding.imvPlanImages.setBackgroundResource(R.drawable.premium);
+                break;
             case 5:
                 mBinding.imvPlanImages.setBackgroundResource(R.drawable.elite);
+                break;
             case 6:
-                mBinding.imvPlanImages.setBackgroundResource(R.drawable.elite);
+                mBinding.imvPlanImages.setBackgroundResource(R.drawable.elite_prime);
+                break;
         }
     }
 
