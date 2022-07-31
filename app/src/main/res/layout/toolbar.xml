@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:navigationIcon="@drawable/ic_baseline_arrow_back_ios_24"
+    android:minHeight="?attr/actionBarSize"
+    android:layout_height="?actionBarSize"
+    android:background="@color/dg_color"
+    android:theme="?attr/actionBarTheme"
+    local:popupTheme="@style/ThemeOverlay.AppCompat.Light" />

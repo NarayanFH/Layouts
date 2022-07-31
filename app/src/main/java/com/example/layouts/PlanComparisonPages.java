@@ -1,39 +1,47 @@
 package com.example.layouts;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.layouts.Interface.RetroFitAPI;
+import com.example.layouts.Models.PlansModel;
+import com.example.layouts.Utils.NetworkClass;
 import com.example.layouts.databinding.ActivityPlanComparisonPagesBinding;
 import com.example.layouts.databinding.BottomSheetDialogBinding;
 import com.example.layouts.databinding.BottomSheetPlansInfoBinding;
-import com.example.layouts.Models.PlansModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlanComparisonPages extends AppCompatActivity {
     ActivityPlanComparisonPagesBinding mBinding;
     Integer first_page;
     Integer second_page;
-    PlansModel calledModal;
+    ArrayList<PlansModel> plansModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        ArrayList<Integer> page_list = getIntent().getIntegerArrayListExtra("pageNumbers");
         setContentView(R.layout.activity_plan_comparison_pages);
         mBinding = ActivityPlanComparisonPagesBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
@@ -41,8 +49,23 @@ public class PlanComparisonPages extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
         ArrayList<Integer> pages = (ArrayList<Integer>) args.getSerializable("ARRAYLIST");
+//        ArrayList<PlansModel> plansModels = (ArrayList<PlansModel>) args.getSerializable("PlansModel");
         first_page = pages.get(0);
         second_page = pages.get(1);
+
+        androidx.appcompat.widget.Toolbar mToolbar= (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Back to Pricing page",Toast.LENGTH_SHORT).show();
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            }
+        });
+
+
         getProData();
         mBinding.imvBilledDurInfo1.setOnClickListener(v -> showBottomSheetDialog1());
         mBinding.imvBilledDurInfo2.setOnClickListener(v -> showBottomSheetDialog2());
@@ -57,11 +80,11 @@ public class PlanComparisonPages extends AppCompatActivity {
     }
 
     private void showBottomSheetRebalancingPFDialog2() {
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(this));
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(PlanComparisonPages.this);
+        BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(PlanComparisonPages.this));
         bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
-        mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(second_page).priceWealth.meta.app);
+        mBottomSheetBinding.tvBSContent.setText("Under this plan, we offer you the advisory and execution support required to rebalance your portfolio. PF ");
         mBottomSheetBinding.tvBSHeadLine.setText("Re-balancing Portfolio");
         bottomSheetDialog.show();
     }
@@ -71,7 +94,7 @@ public class PlanComparisonPages extends AppCompatActivity {
         BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(this));
         bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
-        mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(first_page).priceWealth.meta.app);
+        mBottomSheetBinding.tvBSContent.setText("Under this plan, we offer you the advisory and execution support required to rebalance your portfolio.");
         mBottomSheetBinding.tvBSHeadLine.setText("Re-balancing Portfolio");
         bottomSheetDialog.show();
     }
@@ -81,7 +104,7 @@ public class PlanComparisonPages extends AppCompatActivity {
         BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(this));
         bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
-        mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(second_page).priceWealth.meta.app);
+        mBottomSheetBinding.tvBSContent.setText("Under this plan, we offer you the advisory and execution support required to rebalance your portfolio.");
         mBottomSheetBinding.tvBSHeadLine.setText("Tax Filing");
         bottomSheetDialog.show();
     }
@@ -91,7 +114,7 @@ public class PlanComparisonPages extends AppCompatActivity {
         BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(this));
         bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
-        mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(first_page).priceWealth.meta.app);
+        mBottomSheetBinding.tvBSContent.setText("Under this plan, we offer you the advisory and execution support required to rebalance your portfolio.");
         mBottomSheetBinding.tvBSHeadLine.setText("Tax Filing");
         bottomSheetDialog.show();
     }
@@ -100,7 +123,7 @@ public class PlanComparisonPages extends AppCompatActivity {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(this));
         bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
-        mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(second_page).priceWealth.meta.app);
+        mBottomSheetBinding.tvBSContent.setText("Under this plan, we offer you the advisory and execution support required to rebalance your portfolio.");
         mBottomSheetBinding.tvBSHeadLine.setText("Private Wealth Management");
         bottomSheetDialog.show();
     }
@@ -109,7 +132,7 @@ public class PlanComparisonPages extends AppCompatActivity {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(this));
         bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
-        mBottomSheetBinding.tvBSContent.setText(calledModal.data.plan_details.plannedDetailsArrays.get(first_page).priceWealth.meta.app);
+        mBottomSheetBinding.tvBSContent.setText("Under this plan, we offer you the advisory and execution support required to rebalance your portfolio.");
         mBottomSheetBinding.tvBSHeadLine.setText("Private Wealth Management");
         bottomSheetDialog.show();
     }
@@ -120,23 +143,23 @@ public class PlanComparisonPages extends AppCompatActivity {
         BottomSheetDialogBinding mBottomSheetBinding = BottomSheetDialogBinding.inflate(LayoutInflater.from(this));
         bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
-        if (calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.isQuarterly == 0) {
+        if (plansModel.get(first_page).amount.getIsquaterly() == 0) {
             mBottomSheetBinding.tvPaymentTermText.setText("The payment term for this plan will be Rs. 1,499 \n every six months.");
-            mBottomSheetBinding.tvQ1Price.setText("H1 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.total);
-            mBottomSheetBinding.tvQ2Price.setText("H2 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.total);
+            mBottomSheetBinding.tvQ1Price.setText("H1 - ₹ " + plansModel.get(first_page).amount.getTotal());
+            mBottomSheetBinding.tvQ2Price.setText("H2 - ₹ " + plansModel.get(first_page).amount.getTotal());
             mBottomSheetBinding.tvQ3Price.setVisibility(View.INVISIBLE);
             mBottomSheetBinding.tvQ4Price.setVisibility(View.INVISIBLE);
             bottomSheetDialog.show();
-        } else if (calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.isQuarterly == 1) {
+        } else if (plansModel.get(first_page).amount.getIsquaterly() == 1) {
             mBottomSheetBinding.tvQ3Price.setVisibility(View.VISIBLE);
             mBottomSheetBinding.tvQ4Price.setVisibility(View.VISIBLE);
-            mBottomSheetBinding.tvBSPlanName.setText(calledModal.data.plan_details.plannedDetailsArrays.get(first_page).category_name);
-            mBottomSheetBinding.tvBSPrice.setText(" | " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).monthly_amount);
+            mBottomSheetBinding.tvBSPlanName.setText(plansModel.get(first_page).getCategory_name());
+            mBottomSheetBinding.tvBSPrice.setText(" | " + plansModel.get(first_page).getMonthly_amount());
             mBottomSheetBinding.tvPaymentTermText.setText("The payment term for this plan will be quarterly, that is once in every three months.");
-            mBottomSheetBinding.tvQ1Price.setText("Q1 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.Q1);
-            mBottomSheetBinding.tvQ2Price.setText("Q2 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.Q2);
-            mBottomSheetBinding.tvQ3Price.setText("Q3 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.Q3);
-            mBottomSheetBinding.tvQ4Price.setText("Q4 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(first_page).amount.Q4);
+            mBottomSheetBinding.tvQ1Price.setText("Q1 - ₹ " + plansModel.get(first_page).amount.getQ1());
+            mBottomSheetBinding.tvQ2Price.setText("Q2 - ₹ " + plansModel.get(first_page).amount.getQ2());
+            mBottomSheetBinding.tvQ3Price.setText("Q3 - ₹ " + plansModel.get(first_page).amount.getQ3());
+            mBottomSheetBinding.tvQ4Price.setText("Q4 - ₹ " + plansModel.get(first_page).amount.getQ4());
             bottomSheetDialog.show();
         }
     }
@@ -147,29 +170,30 @@ public class PlanComparisonPages extends AppCompatActivity {
         BottomSheetDialogBinding mBottomSheetBinding = BottomSheetDialogBinding.inflate(LayoutInflater.from(this));
         bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
-        if (calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.isQuarterly == 0) {
+        if (plansModel.get(second_page).amount.getIsquaterly() == 0) {
             mBottomSheetBinding.tvPaymentTermText.setText("The payment term for this plan will be Rs. 1,499 \n every six months.");
-            mBottomSheetBinding.tvQ1Price.setText("H1 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.total);
-            mBottomSheetBinding.tvQ2Price.setText("H2 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.total);
+            mBottomSheetBinding.tvQ1Price.setText("H1 - ₹ " + plansModel.get(second_page).amount.getTotal());
+            mBottomSheetBinding.tvQ2Price.setText("H2 - ₹ " + plansModel.get(second_page).amount.getTotal());
             mBottomSheetBinding.tvQ3Price.setVisibility(View.INVISIBLE);
             mBottomSheetBinding.tvQ4Price.setVisibility(View.INVISIBLE);
             bottomSheetDialog.show();
-        } else if (calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.isQuarterly == 1) {
+        } else if (plansModel.get(second_page).amount.getIsquaterly() == 1) {
             mBottomSheetBinding.tvQ3Price.setVisibility(View.VISIBLE);
             mBottomSheetBinding.tvQ4Price.setVisibility(View.VISIBLE);
-            mBottomSheetBinding.tvBSPlanName.setText(calledModal.data.plan_details.plannedDetailsArrays.get(second_page).category_name);
-            mBottomSheetBinding.tvBSPrice.setText(" | " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).monthly_amount);
+            mBottomSheetBinding.tvBSPlanName.setText(plansModel.get(second_page).getCategory_name());
+            mBottomSheetBinding.tvBSPrice.setText(" | " + plansModel.get(second_page).getMonthly_amount());
             mBottomSheetBinding.tvPaymentTermText.setText("The payment term for this plan will be quarterly, that is once in every three months.");
-            mBottomSheetBinding.tvQ1Price.setText("Q1 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.Q1);
-            mBottomSheetBinding.tvQ2Price.setText("Q2 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.Q2);
-            mBottomSheetBinding.tvQ3Price.setText("Q3 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.Q3);
-            mBottomSheetBinding.tvQ4Price.setText("Q4 - ₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(second_page).amount.Q4);
+            mBottomSheetBinding.tvQ1Price.setText("Q1 - ₹ " + plansModel.get(second_page).amount.getQ1());
+            mBottomSheetBinding.tvQ2Price.setText("Q2 - ₹ " + plansModel.get(second_page).amount.getQ2());
+            mBottomSheetBinding.tvQ3Price.setText("Q3 - ₹ " + plansModel.get(second_page).amount.getQ3());
+            mBottomSheetBinding.tvQ4Price.setText("Q4 - ₹ " + plansModel.get(second_page).amount.getQ4());
             bottomSheetDialog.show();
         }
     }
 
+
     private void getProData() {
-        if(first_page==0) {
+        if (first_page == 0) {
             mBinding.imvTaxFilingInfo1.setVisibility(View.GONE);
             mBinding.imvRebalancingInfo1.setVisibility(View.GONE);
             mBinding.imvWealthInfo1.setVisibility(View.GONE);
@@ -181,7 +205,7 @@ public class PlanComparisonPages extends AppCompatActivity {
 
         }
 
-        if(second_page==0) {
+        if (second_page == 0) {
             mBinding.imvTaxFilingInfo2.setVisibility(View.GONE);
             mBinding.imvRebalancingInfo2.setVisibility(View.GONE);
             mBinding.imvWealthInfo2.setVisibility(View.GONE);
@@ -192,231 +216,203 @@ public class PlanComparisonPages extends AppCompatActivity {
             mBinding.imvWealthInfo2.setVisibility(View.VISIBLE);
         }
 
-//        mBinding.progressBar.setIndeterminate(true);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.fintoo.in/restapi/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        RetroFitAPI retrofitAPI = retrofit.create(RetroFitAPI.class);
-        Call<PlansModel> call = retrofitAPI.getProData();
-        call.enqueue(new Callback<PlansModel>() {
+        NetworkClass.apiClient().create(RetroFitAPI.class).getpricingdetails().enqueue(new Callback<ResponseBody>() {
+            @SuppressLint("SetTextI18n")
             @Override
-            public void onResponse(Call<PlansModel> call, Response<PlansModel> response) {
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
 
-                Toast.makeText(PlanComparisonPages.this, "Data Loaded", Toast.LENGTH_SHORT).show();
+                assert response.body() != null;
+                Log.e("GetResponse", response.body().toString());
+                try {
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    Log.e("jsonObject", jsonObject.toString());
+                    Gson gson = new Gson();
+                    Type typeToken = new TypeToken<List<PlansModel>>() {
+                    }.getType();
+                    plansModel = gson.fromJson(jsonObject.getJSONObject("data").getJSONObject("plan_details").getJSONArray("plandetails").toString(), typeToken);
+                    Log.e("plansModel", plansModel.toString());
 
-                PlansModel responseFromAPI = response.body();
-                calledModal = response.body();
+                    // Upper Texts
+                    String durationValue1 = "";
+                    Integer paymentFrequencyValue1 = plansModel.get(first_page).getPayment_frequency();
+                    if (paymentFrequencyValue1 == 6) {
+                        durationValue1 = "Billed Half Yearly";
+                    } else if (paymentFrequencyValue1 == 1)
+                        durationValue1 = "Billed Monthly";
+                    else if (paymentFrequencyValue1 == 3)
+                        durationValue1 = "BilledQuarterly";
 
-                String durationValue1 = "No Data";
-                Integer apiVal1 = responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).payment_frequency;
-                if (apiVal1 == 6) {
-                    durationValue1 = "Billed Half Yearly";
-                } else if (apiVal1 == 1)
-                    durationValue1 = "Monthly";
-                else if (apiVal1 == 3)
-                    durationValue1 = "Quarterly";
-                else
-                    durationValue1 = "No calculation added for:" + durationValue1;
+                    String durationValue2 = "";
+                    Integer paymentFrequencyValue2 = plansModel.get(second_page).getPayment_frequency();
+                    if (paymentFrequencyValue2 == 6) {
+                        durationValue2 = "Billed Half Yearly";
+                    } else if (paymentFrequencyValue2 == 1)
+                        durationValue2 = "Billed Monthly";
+                    else if (paymentFrequencyValue2 == 3)
+                        durationValue2 = "Billed Quarterly";
 
-                String plan_type_value1 = "";
-                if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).plan_type.equals("robo_advisory")) {
-                    plan_type_value1 = "Robo Advisory";
-                } else
-                    plan_type_value1 = "Chat with Experts";
-
-
-                String durationValue2 = "No Data";
-                Integer apiVal2 = responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page).payment_frequency;
-                if (apiVal2 == 6) {
-                    durationValue2 = "Billed Half Yearly";
-                } else if (apiVal2 == 1)
-                    durationValue2 = "Monthly";
-                else if (apiVal2 == 3)
-                    durationValue2 = "Quarterly";
-                else
-                    durationValue2 = "No calculation added for:" + durationValue2;
-
-                String plan_type_value2 = "";
-                if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page).plan_type.equals("robo_advisory")) {
-                    plan_type_value2 = "Robo Advisory";
-                } else
-                    plan_type_value2 = "Chat with Experts";
-
-//                setPortFolioValue.setText(responseFromAPI.data.portfolio_value);
-                System.out.println("Response From APi  ......" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).monthly_amount);
-                System.out.println("Response From APi  ......" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(1).monthly_amount);
-                mBinding.tvPlanName1Comp.setText(responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).category_name);
-                mBinding.tvPlanName2Comp.setText(responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page).category_name);
-                mBinding.tvBilledDurationComp1.setText(durationValue1);
-                mBinding.tvBilledDurationComp2.setText(durationValue2);
-                mBinding.tvPlanTypeCompVal1.setText(plan_type_value1);
-                mBinding.tvPlanTypeCompVal2.setText(plan_type_value2);
-                mBinding.tvPlanPriceComp1.setText("₹" + responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).monthly_amount);
-                mBinding.tvPlanPriceComp2.setText("₹ " + responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page).monthly_amount);
+                    mBinding.tvPlanName1Comp.setText(plansModel.get(first_page).getCategory_name());
+                    mBinding.tvPlanName2Comp.setText(plansModel.get(second_page).getCategory_name());
+                    mBinding.tvPlanPriceComp1.setText("₹ " + plansModel.get(first_page).getMonthly_amount());
+                    mBinding.tvPlanPriceComp2.setText("₹ " + plansModel.get(second_page).getMonthly_amount());
+                    mBinding.tvBilledDurationComp1.setText(durationValue1);
+                    mBinding.tvBilledDurationComp2.setText(durationValue2);
 
 
-                // 1st Page Plan value
-                PlansModel.PlannedDetailsArray val = responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page);
-                if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).financialPlanning.financialPlanningData == 1) {
+                    // //** First field comparison
+                    String planTypeVal1 = "";
+                    if (plansModel.get(first_page).getPlan_type().equals("robo_advisory")) {
+                        planTypeVal1 = "Robo Advisory";
+                    } else
+                        planTypeVal1 = "Chat with Experts";
+                    mBinding.tvPlanTypeCompVal1.setText(planTypeVal1);
+
+
+                    if (plansModel.get(first_page).getFinancial_planning().getData() == 1) {
 //                  mBinding.tvPlanTypeCompVal1.setText("❌");
-                    mBinding.tvFinancialPlanningCompVal1.setText("✔");
+                        mBinding.tvFinancialPlanningCompVal1.setText("✔");
 
-                } else {
-                    mBinding.tvFinancialPlanningCompVal1.setText("❌");
-                }
+                    } else {
+                        mBinding.tvFinancialPlanningCompVal1.setText("❌");
+                    }
 
-                if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(first_page).priceWealth.priceWealthData == 1) {
+                    if (plansModel.get(first_page).getPrivate_wealth_managment().getData() == 1) {
 //                  mBinding.tvPlanTypeCompVal1.setText("❌");
-                    mBinding.tvPrivateWealthCompVal1.setText("✔");
-                } else {
-                    mBinding.tvPrivateWealthCompVal1.setText("❌");
+                        mBinding.tvPrivateWealthCompVal1.setText("✔");
+                    } else {
+                        mBinding.tvPrivateWealthCompVal1.setText("❌");
+                    }
+
+                    if (plansModel.get(first_page).getTax_filling().getData() == 1) {
+                        mBinding.tvTaxFilingVal1.setText("✔");
+                    } else {
+                        mBinding.tvTaxFilingVal1.setText("❌");
+                    }
+
+                    if (plansModel.get(first_page).getRebalancing_portfolio().getData() == 1) {
+                        mBinding.tvRebalancingPFCompVal1.setText("✔");
+                    } else {
+                        mBinding.tvRebalancingPFCompVal1.setText("❌");
+                    }
+
+                    if (plansModel.get(first_page).getRisk_management().getData() == 1) {
+                        mBinding.tvRiskManageCompVal1.setText("✔");
+                    } else {
+                        mBinding.tvRiskManageCompVal1.setText("❌");
+
+                    }
+                    if (plansModel.get(first_page).getChat_with_expert().getData() == 1) {
+                        mBinding.tvChatWithExpertCompVal1.setText("✔");
+                    } else {
+                        mBinding.tvChatWithExpertCompVal1.setText("❌");
+                    }
+                    if (plansModel.get(first_page).getTax_advisory().getData() == 1) {
+                        mBinding.tvTaxAdvisoryCompVal1.setText("✔");
+                    } else {
+                        mBinding.tvTaxAdvisoryCompVal1.setText("❌");
+                    }
+
+
+                    if (plansModel.get(first_page).getReview_frequency().equals("1")) {
+                        mBinding.tvReviewFrequencyCompVal1.setText("Monthly");
+                    } else if (plansModel.get(first_page).getReview_frequency().equals("3")) {
+                        mBinding.tvReviewFrequencyCompVal1.setText("Quarterly");
+                    } else {
+                        mBinding.tvReviewFrequencyCompVal1.setText("Half Yearly");
+                    }
+
+                    if (first_page == 6 || first_page == 0) {
+                        mBinding.imvBilledDurInfo1.setVisibility(View.INVISIBLE);
+                    } else {
+                        mBinding.imvBilledDurInfo1.setVisibility(View.VISIBLE);
+                    }
+
+                    //** Second field comparison
+
+                    String planTypeVal2 = "";
+                    if (plansModel.get(second_page).getPlan_type().equals("robo_advisory")) {
+                        planTypeVal2 = "Robo Advisory";
+                    } else
+                        planTypeVal2 = "Chat with Experts";
+                    mBinding.tvPlanTypeCompVal1.setText(planTypeVal2);
+
+
+                    if (plansModel.get(second_page).getFinancial_planning().getData() == 1) {
+//                  mBinding.tvPlanTypeCompVal1.setText("❌");
+                        mBinding.tvFinancialPlanningCompVal2.setText("✔");
+
+                    } else {
+                        mBinding.tvFinancialPlanningCompVal2.setText("❌");
+                    }
+
+                    if (plansModel.get(second_page).getPrivate_wealth_managment().getData() == 1) {
+//                  mBinding.tvPlanTypeCompVal1.setText("❌");
+                        mBinding.tvPrivateWealthCompVal2.setText("✔");
+                    } else {
+                        mBinding.tvPrivateWealthCompVal2.setText("❌");
+                    }
+
+                    if (plansModel.get(first_page).getTax_filling().getData() == 1) {
+                        mBinding.tvTaxFilingVal1.setText("✔");
+                    } else {
+                        mBinding.tvTaxFilingVal1.setText("❌");
+                    }
+
+                    if (plansModel.get(second_page).getRebalancing_portfolio().getData() == 1) {
+                        mBinding.tvRebalancingPFCompVal2.setText("✔");
+                    } else {
+                        mBinding.tvRebalancingPFCompVal2.setText("❌");
+                    }
+
+                    if (plansModel.get(second_page).getRisk_management().getData() == 1) {
+                        mBinding.tvRiskManageCompVal2.setText("✔");
+                    } else {
+                        mBinding.tvRiskManageCompVal2.setText("❌");
+
+                    }
+                    if (plansModel.get(second_page).getChat_with_expert().getData() == 1) {
+                        mBinding.tvChatWithExpertCompVal2.setText("✔");
+                    } else {
+                        mBinding.tvChatWithExpertCompVal2.setText("❌");
+                    }
+                    if (plansModel.get(second_page).getTax_advisory().getData() == 1) {
+                        mBinding.tvTaxAdvisoryCompVal2.setText("✔");
+                    } else {
+                        mBinding.tvTaxAdvisoryCompVal2.setText("❌");
+                    }
+
+
+                    if (plansModel.get(second_page).getReview_frequency().equals("1")) {
+                        mBinding.tvReviewFrequencyCompVal2.setText("Monthly");
+                    } else if (plansModel.get(first_page).getReview_frequency().equals("3")) {
+                        mBinding.tvReviewFrequencyCompVal2.setText("Quarterly");
+                    } else {
+                        mBinding.tvReviewFrequencyCompVal2.setText("Half Yearly");
+                    }
+
+                    if (second_page == 6 || second_page == 0) {
+                        mBinding.imvBilledDurInfo2.setVisibility(View.INVISIBLE);
+                    } else {
+                        mBinding.imvBilledDurInfo2.setVisibility(View.VISIBLE);
+                    }
+
+
+                    progressDialog.dismiss();
+                } catch (Exception e) {
+                    Log.e("error", e.toString());
                 }
-
-                if (val.taxFilling.taxFillingData == 1) {
-                    mBinding.tvTaxFilingVal1.setText("✔");
-                } else {
-                    mBinding.tvTaxFilingVal1.setText("❌");
-                }
-
-                if (val.rebalancingPortfolio.rebalancingPortfolioData == 1) {
-                    mBinding.tvRebalancingPFCompVal1.setText("✔");
-                } else {
-                    mBinding.tvRebalancingPFCompVal1.setText("❌");
-                }
-
-                if (val.riskManagement.riskManagementData == 1) {
-                    mBinding.tvRiskManageCompVal1.setText("✔");
-                } else {
-                    mBinding.tvRiskManageCompVal1.setText("❌");
-
-                }
-                if (val.chatWithExpert.chatWithExpertData == 1) {
-                    mBinding.tvChatWithExpertCompVal1.setText("✔");
-                } else {
-                    mBinding.tvChatWithExpertCompVal1.setText("❌");
-                }
-                if (val.taxAdvisory.taxAdvisoryData == 1) {
-                    mBinding.tvTaxAdvisoryCompVal1.setText("✔");
-                } else {
-                    mBinding.tvTaxAdvisoryCompVal1.setText("❌");
-                }
-
-
-                if (val.reviewFrequencyData.equals("1")) {
-                    mBinding.tvReviewFrequencyCompVal1.setText("Monthly");
-                } else if (val.reviewFrequencyData.equals("3")) {
-                    mBinding.tvReviewFrequencyCompVal1.setText("Quarterly");
-                } else {
-                    mBinding.tvReviewFrequencyCompVal1.setText("Half Yearly");
-                }
-
-
-                if (first_page == 6 || first_page == 0) {
-                    mBinding.imvBilledDurInfo1.setVisibility(View.INVISIBLE);
-                } else {
-                    mBinding.imvBilledDurInfo1.setVisibility(View.VISIBLE);
-                }
-
-
-                //2nd page
-                PlansModel.PlannedDetailsArray val2 = responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page);
-                if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page).financialPlanning.financialPlanningData == 1) {
-                    mBinding.tvFinancialPlanningCompVal2.setText("✔");
-
-                } else {
-                    mBinding.tvFinancialPlanningCompVal2.setText("❌");
-                }
-
-                if (responseFromAPI.data.plan_details.plannedDetailsArrays.get(second_page).priceWealth.priceWealthData == 1) {
-                    mBinding.tvPrivateWealthCompVal2.setText("✔");
-
-                } else {
-                    mBinding.tvPrivateWealthCompVal2.setText("❌");
-                }
-
-
-                if (val2.taxFilling.taxFillingData == 1) {
-                    mBinding.tvTaxFilingVal2.setText("✔");
-                } else {
-                    mBinding.tvTaxFilingVal2.setText("❌");
-                }
-
-                if (val2.rebalancingPortfolio.rebalancingPortfolioData == 1) {
-                    mBinding.tvRebalancingPFCompVal2.setText("✔");
-                } else {
-                    mBinding.tvRebalancingPFCompVal2.setText("❌");
-                }
-
-                if (val2.riskManagement.riskManagementData == 1) {
-                    mBinding.tvRiskManageCompVal2.setText("✔");
-                } else {
-                    mBinding.tvRiskManageCompVal2.setText("❌");
-
-                }
-                if (val2.chatWithExpert.chatWithExpertData == 1) {
-                    mBinding.tvChatWithExpertCompVal2.setText("✔");
-                } else {
-                    mBinding.tvChatWithExpertCompVal2.setText("❌");
-                }
-                if (val2.taxAdvisory.taxAdvisoryData == 1) {
-                    mBinding.tvTaxAdvisoryCompVal2.setText("✔");
-                } else {
-                    mBinding.tvTaxAdvisoryCompVal2.setText("❌");
-                }
-
-                if (val2.reviewFrequencyData.equals("1")) {
-                    mBinding.tvReviewFrequencyCompVal2.setText("Monthly");
-                } else if (val2.reviewFrequencyData.equals("3")) {
-                    mBinding.tvReviewFrequencyCompVal2.setText("Quarterly");
-                } else {
-                    mBinding.tvReviewFrequencyCompVal2.setText("Half Yearly");
-                }
-
-                if (second_page == 6 || second_page == 0) {
-                    mBinding.imvBilledDurInfo2.setVisibility(View.INVISIBLE);
-                } else {
-                    mBinding.imvBilledDurInfo2.setVisibility(View.VISIBLE);
-                }
-
-//                if(second_page==6)
-//                {
-//                    mBinding.tvPlanPriceComp2.setText(calledModal.data.plan_details.plannedDetailsArrays.get(second_page).monthly_amount);
-//                    mBinding.tvBilledDurationComp2.setVisibility(View.GONE);
-//                    mBinding.tvPriceComp2Duration.setVisibility(View.GONE);
-//                    mBinding.imvBilledDurInfo2.setVisibility(View.GONE);
-//                }
-//                else if(second_page==0) {
-//                    mBinding.imvBilledDurInfo2.setVisibility(View.INVISIBLE);
-//                    mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
-//                    mBinding.tvBilledDuration.setText(durationValue);
-//                    mBinding.tvPriceText.setText("₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).monthly_amount);
-//                } else {
-//                    mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
-//                    mBinding.imvBilledDurInfo.setVisibility(View.VISIBLE);
-//                    mBinding.tvBilledDuration.setText(durationValue);
-//                    mBinding.tvPriceText.setText("₹ " + calledModal.data.plan_details.plannedDetailsArrays.get(pagePosition).monthly_amount);
-//                }
-                // 2nd page data end
-
-                progressDialog.dismiss();
-
             }
+
             @Override
-            public void onFailure(Call<PlansModel> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 progressDialog.dismiss();
-//                setPortFolioValue.setText("Error found is : " + t.getMessage());
                 System.out.println("Error From APi  ......" + t.getMessage());
             }
         });
-
     }
-
 }

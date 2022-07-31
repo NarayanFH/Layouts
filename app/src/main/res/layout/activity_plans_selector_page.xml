@@ -9,37 +9,27 @@
 
     <ScrollView
         android:id="@+id/nestedView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/upperConstraintId"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:indeterminateTint="@color/black"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.72" />
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                layout="@layout/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:background="@color/dg_color"
@@ -65,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20sp"
                 android:fontFamily="sans-serif-medium"
-                android:text="Basic Pro"
+                android:text="Basic"
                 android:textAllCaps="true"
                 android:textColor="@color/light_green"
                 android:textSize="30sp"
@@ -89,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="₹ 249"
+                android:text="₹ 99"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -141,7 +131,7 @@
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_marginEnd="2dp"
-                android:background="@drawable/classic"
+                android:background="@drawable/my_subscription_bg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -177,7 +167,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="₹ 0-50 L"
+                android:text="₹ 0-25 L"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/tvPlanName"
@@ -280,378 +270,378 @@
                 android:layout_height="160dp"
                 app:layout_constraintEnd_toEndOf="@id/tvWantToComparePlans"
                 app:layout_constraintStart_toStartOf="@id/tvWantToComparePlans"
-                app:layout_constraintTop_toBottomOf="@id/viewUnderLineComparePlans"
+                app:layout_constraintTop_toBottomOf="@id/viewUnderLineComparePlans" />
 
-                />
+            <!--            <androidx.recyclerview.widget.RecyclerView-->
+            <!--                android:id="@+id/recycleFeatures"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="590dp"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/viewUnderLineComparePlans" />-->
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvServiceOffer"
-                android:layout_width="0dp"
+            <androidx.viewpager.widget.ViewPager
+                android:layout_marginTop="20dp"
+                android:id="@+id/viewPagerMain"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
-                app:cardBackgroundColor="@color/l_green"
-                app:cardCornerRadius="14dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewUnderLineComparePlans">
+                app:layout_constraintTop_toBottomOf="@+id/viewUnderLineComparePlans" />
+
+            <!--            <androidx.viewpager.widget.ViewPager-->
+            <!--                android:id="@+id/viewPagerMain"-->
+            <!--                app:layout_constraintStart_toStartOf="@id/recycleFeatures"-->
+            <!--                app:layout_constraintEnd_toEndOf="@id/recycleFeatures"-->
+            <!--                app:layout_constraintTop_toTopOf="@id/recycleFeatures"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@id/recycleFeatures"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="0dp"/>-->
+
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/cvServiceOffer"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginHorizontal="40dp"-->
+            <!--                android:layout_marginTop="30dp"-->
+            <!--                android:layout_marginBottom="10dp"-->
+            <!--                app:cardBackgroundColor="@color/l_green"-->
+            <!--                app:cardCornerRadius="14dp"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/viewUnderLineComparePlans">-->
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/middleCardConstraint"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                    android:id="@+id/middleCardConstraint"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent">-->
 
-                    <TextView
-                        android:id="@+id/tvServiceOffer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="10dp"
-                        android:paddingBottom="8dp"
-                        android:text="Services We Offer"
-                        android:textColor="@color/teal"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvServiceOffer"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="0dp"-->
+            <!--                        android:layout_marginTop="8dp"-->
+            <!--                        android:layout_marginBottom="10dp"-->
+            <!--                        android:paddingBottom="8dp"-->
+            <!--                        android:text="Services We Offer"-->
+            <!--                        android:textColor="@color/teal"-->
+            <!--                        android:textSize="18sp"-->
+            <!--                        android:textStyle="bold"-->
+            <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
-                    <TextView
-                        android:id="@+id/tvFinancialPlanning"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:padding="16dp"
-                        android:text="Financial Planning"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@id/imvCheckFinancialPlan"
-                        app:layout_constraintTop_toBottomOf="@id/tvServiceOffer" />
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvFinancialPlanning"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="20sp"-->
+            <!--                        android:padding="16dp"-->
+            <!--                        android:text="Financial Planning"-->
+            <!--                        android:textSize="14sp"-->
+            <!--                        android:textStyle="bold"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvCheckFinancialPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@id/tvServiceOffer" />-->
 
-                    <ImageView
+            <!--                    <ImageView-->
 
-                        android:id="@+id/imvCheckFinancialPlan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:src="@drawable/correct"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvFinancialPlanning"
-                        app:layout_constraintEnd_toStartOf="@+id/tvFinancialPlanning"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvFinancialPlanning" />
+            <!--                        android:id="@+id/imvCheckFinancialPlan"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="10dp"-->
+            <!--                        android:src="@drawable/correct"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvFinancialPlanning"-->
+            <!--                        app:layout_constraintEnd_toStartOf="@+id/tvFinancialPlanning"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvFinancialPlanning" />-->
 
-                    <View
+            <!--                    <View-->
 
-                        android:id="@+id/viewLineFinancialPlanning"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="29dp"
-                        android:background="@color/dark_green"
-                        app:layout_constraintStart_toStartOf="@id/imvCheckFinancialPlan"
-                        app:layout_constraintTop_toBottomOf="@+id/tvFinancialPlanning" />
+            <!--                        android:id="@+id/viewLineFinancialPlanning"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="1dp"-->
+            <!--                        android:layout_marginStart="16dp"-->
+            <!--                        android:layout_marginEnd="29dp"-->
+            <!--                        android:background="@color/dark_green"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvCheckFinancialPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@+id/tvFinancialPlanning" />-->
 
-                    <TextView
-                        android:id="@+id/tvPrivateWealthManagement"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:padding="16dp"
-                        android:text="Private Wealth Management"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvPrivateWealthManagement"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="20sp"-->
+            <!--                        android:padding="16dp"-->
+            <!--                        android:text="Private Wealth Management"-->
+            <!--                        android:textSize="14sp"-->
+            <!--                        android:textStyle="bold"-->
+            <!--                        android:visibility="gone"-->
 
-                        app:layout_constraintStart_toStartOf="@id/imvCheckFinancialPlan"
-                        app:layout_constraintTop_toBottomOf="@id/viewLineFinancialPlanning" />
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvCheckFinancialPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@id/viewLineFinancialPlanning" />-->
 
-                    <ImageView
-                        android:id="@+id/imvWealthInfo"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/info_blue"
-                        android:backgroundTint="@color/teal"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvPrivateWealthManagement"
-                        app:layout_constraintStart_toEndOf="@id/tvPrivateWealthManagement"
-                        app:layout_constraintTop_toTopOf="@id/tvPrivateWealthManagement" />
+            <!--                    <ImageView-->
+            <!--                        android:id="@+id/imvWealthInfo"-->
+            <!--                        android:layout_width="20dp"-->
+            <!--                        android:layout_height="20dp"-->
+            <!--                        android:background="@drawable/info_blue"-->
+            <!--                        android:backgroundTint="@color/teal"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvPrivateWealthManagement"-->
+            <!--                        app:layout_constraintStart_toEndOf="@id/tvPrivateWealthManagement"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvPrivateWealthManagement" />-->
 
-                    <ImageView
-                        android:id="@+id/imvCheckPrivateWealthPlan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:src="@drawable/correct"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvPrivateWealthManagement"
-                        app:layout_constraintEnd_toStartOf="@+id/tvPrivateWealthManagement"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvPrivateWealthManagement" />
+            <!--                    <ImageView-->
+            <!--                        android:id="@+id/imvCheckPrivateWealthPlan"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="10dp"-->
+            <!--                        android:src="@drawable/correct"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvPrivateWealthManagement"-->
+            <!--                        app:layout_constraintEnd_toStartOf="@+id/tvPrivateWealthManagement"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvPrivateWealthManagement" />-->
 
-                    <View
-                        android:id="@+id/viewLinePrivateWealth"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="29dp"
-                        android:background="@color/dark_green"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"
-                        app:layout_constraintTop_toBottomOf="@+id/tvPrivateWealthManagement" />
-
-
-                    <TextView
-                        android:id="@+id/tvTaxPlanning"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:padding="16dp"
-                        android:text="Tax Plan"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/imvCheckTaxPlan"
-                        app:layout_constraintTop_toBottomOf="@id/viewLinePrivateWealth" />
-
-                    <ImageView
-                        android:id="@+id/imvTaxPlanInfo"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/info_blue"
-                        android:backgroundTint="@color/teal"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvTaxPlanning"
-                        app:layout_constraintStart_toEndOf="@id/tvTaxPlanning"
-                        app:layout_constraintTop_toTopOf="@id/tvTaxPlanning" />
-
-                    <ImageView
-                        android:id="@+id/imvCheckTaxPlan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:src="@drawable/correct"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvTaxPlanning"
-                        app:layout_constraintEnd_toStartOf="@+id/tvTaxPlanning"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvTaxPlanning" />
-
-                    <View
-                        android:id="@+id/viewLineTaxPlan"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="29dp"
-                        android:background="@color/dark_green"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"
-                        app:layout_constraintTop_toBottomOf="@+id/tvTaxPlanning" />
+            <!--                    <View-->
+            <!--                        android:id="@+id/viewLinePrivateWealth"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="1dp"-->
+            <!--                        android:layout_marginStart="16dp"-->
+            <!--                        android:layout_marginEnd="29dp"-->
+            <!--                        android:background="@color/dark_green"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@+id/tvPrivateWealthManagement" />-->
 
 
-                    <TextView
-                        android:id="@+id/tvRiskManagement"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:padding="16dp"
-                        android:text="Risk Management"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@id/imvRiskPlan"
-                        app:layout_constraintTop_toBottomOf="@id/viewLineTaxPlan" />
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvTaxPlanning"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="20sp"-->
+            <!--                        android:padding="16dp"-->
+            <!--                        android:text="Tax Plan"-->
+            <!--                        android:textSize="14sp"-->
+            <!--                        android:textStyle="bold"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvCheckTaxPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@id/viewLinePrivateWealth" />-->
 
-                    <ImageView
+            <!--                    <ImageView-->
+            <!--                        android:id="@+id/imvTaxPlanInfo"-->
+            <!--                        android:layout_width="20dp"-->
+            <!--                        android:layout_height="20dp"-->
+            <!--                        android:background="@drawable/info_blue"-->
+            <!--                        android:backgroundTint="@color/teal"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvTaxPlanning"-->
+            <!--                        app:layout_constraintStart_toEndOf="@id/tvTaxPlanning"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvTaxPlanning" />-->
 
-                        android:id="@+id/imvRiskPlan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:src="@drawable/correct"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvRiskManagement"
-                        app:layout_constraintEnd_toStartOf="@+id/tvRiskManagement"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvRiskManagement" />
+            <!--                    <ImageView-->
+            <!--                        android:id="@+id/imvCheckTaxPlan"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="10dp"-->
+            <!--                        android:src="@drawable/correct"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvTaxPlanning"-->
+            <!--                        app:layout_constraintEnd_toStartOf="@+id/tvTaxPlanning"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvTaxPlanning" />-->
 
-                    <View
-                        android:id="@+id/viewLineRiskPlan"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="29dp"
-                        android:background="@color/dark_green"
-                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"
-                        app:layout_constraintTop_toBottomOf="@+id/tvRiskManagement" />
-
-                    <TextView
-                        android:id="@+id/tvReBalancingPF"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:padding="16dp"
-                        android:text="Rebalancing of Portfolio"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/imvRebalancingPlan"
-                        app:layout_constraintTop_toBottomOf="@id/viewLineRiskPlan" />
-
-                    <ImageView
-                        android:id="@+id/imvRebalancingInfo"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/info_blue"
-                        android:backgroundTint="@color/teal"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvReBalancingPF"
-                        app:layout_constraintStart_toEndOf="@id/tvReBalancingPF"
-                        app:layout_constraintTop_toTopOf="@id/tvReBalancingPF" />
-
-                    <ImageView
-                        android:id="@+id/imvRebalancingPlan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:src="@drawable/correct"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvReBalancingPF"
-                        app:layout_constraintEnd_toStartOf="@+id/tvReBalancingPF"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvReBalancingPF" />
-
-                    <View
-                        android:id="@+id/viewLineRebalancingPlan"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="29dp"
-                        android:background="@color/dark_green"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"
-                        app:layout_constraintTop_toBottomOf="@+id/tvReBalancingPF" />
-
-                    <TextView
-                        android:id="@+id/tvReviewFrequencyPlan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:paddingStart="16dp"
-                        android:text="Review Frequency"
-
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/imvRebalancingPlan"
-                        app:layout_constraintTop_toBottomOf="@id/viewLineRebalancingPlan" />
-
-                    <TextView
-                        android:id="@+id/tvReviewFrequencyDuration"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="6dp"
-                        android:paddingStart="16dp"
-                        android:paddingBottom="16dp"
-                        android:text="Quarterly"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/imvRebalancingPlan"
-                        app:layout_constraintTop_toBottomOf="@id/tvReviewFrequencyPlan" />
-
-                    <ImageView
-                        android:id="@+id/imvCheckReviewPlan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:src="@drawable/correct"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvReviewFrequencyPlan"
-                        app:layout_constraintEnd_toStartOf="@+id/tvReviewFrequencyPlan"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvReviewFrequencyPlan" />
-
-                    <View
-                        android:id="@+id/viewLineReviewPlan"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="29dp"
-                        android:background="@color/dark_green"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"
-                        app:layout_constraintTop_toBottomOf="@+id/tvReviewFrequencyDuration" />
+            <!--                    <View-->
+            <!--                        android:id="@+id/viewLineTaxPlan"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="1dp"-->
+            <!--                        android:layout_marginStart="16dp"-->
+            <!--                        android:layout_marginEnd="29dp"-->
+            <!--                        android:background="@color/dark_green"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@+id/tvTaxPlanning" />-->
 
 
-                    <TextView
-                        android:id="@+id/tvChatExpertPlan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvRiskManagement"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="20sp"-->
+            <!--                        android:padding="16dp"-->
+            <!--                        android:text="Risk Management"-->
+            <!--                        android:textSize="14sp"-->
+            <!--                        android:textStyle="bold"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvRiskPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@id/viewLineTaxPlan" />-->
 
-                        android:padding="16dp"
-                        android:text="Chat with Expert"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@id/tvRiskManagement"
-                        app:layout_constraintTop_toBottomOf="@id/viewLineReviewPlan" />
+            <!--                    <ImageView-->
 
-                    <ImageView
-                        android:id="@+id/imvCheckChatExpert"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:src="@drawable/correct"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvChatExpertPlan"
-                        app:layout_constraintEnd_toStartOf="@+id/tvChatExpertPlan"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tvChatExpertPlan" />
+            <!--                        android:id="@+id/imvRiskPlan"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="10dp"-->
+            <!--                        android:src="@drawable/correct"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvRiskManagement"-->
+            <!--                        app:layout_constraintEnd_toStartOf="@+id/tvRiskManagement"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvRiskManagement" />-->
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnGetStarted"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:textSize="12sp"
-                        android:layout_marginBottom="20dp"
-                        android:padding="15dp"
-                        android:background="@drawable/button_corners"
-                        android:text="Get Started"
-                        android:textColor="@color/white"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvChatExpertPlan" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--                    <View-->
+            <!--                        android:id="@+id/viewLineRiskPlan"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="1dp"-->
+            <!--                        android:layout_marginStart="16dp"-->
+            <!--                        android:layout_marginEnd="29dp"-->
+            <!--                        android:background="@color/dark_green"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@+id/tvRiskManagement" />-->
+
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvReBalancingPF"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="20sp"-->
+            <!--                        android:padding="16dp"-->
+            <!--                        android:text="Rebalancing of Portfolio"-->
+            <!--                        android:textSize="14sp"-->
+            <!--                        android:textStyle="bold"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvRebalancingPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@id/viewLineRiskPlan" />-->
+
+            <!--                    <ImageView-->
+            <!--                        android:id="@+id/imvRebalancingInfo"-->
+            <!--                        android:layout_width="20dp"-->
+            <!--                        android:layout_height="20dp"-->
+            <!--                        android:background="@drawable/info_blue"-->
+            <!--                        android:backgroundTint="@color/teal"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvReBalancingPF"-->
+            <!--                        app:layout_constraintStart_toEndOf="@id/tvReBalancingPF"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvReBalancingPF" />-->
+
+            <!--                    <ImageView-->
+            <!--                        android:id="@+id/imvRebalancingPlan"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="10dp"-->
+            <!--                        android:src="@drawable/correct"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvReBalancingPF"-->
+            <!--                        app:layout_constraintEnd_toStartOf="@+id/tvReBalancingPF"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvReBalancingPF" />-->
+
+            <!--                    <View-->
+            <!--                        android:id="@+id/viewLineRebalancingPlan"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="1dp"-->
+            <!--                        android:layout_marginStart="16dp"-->
+            <!--                        android:layout_marginEnd="29dp"-->
+            <!--                        android:background="@color/dark_green"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@+id/tvReBalancingPF" />-->
+
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvReviewFrequencyPlan"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="20dp"-->
+            <!--                        android:layout_marginTop="16dp"-->
+            <!--                        android:layout_marginBottom="16dp"-->
+            <!--                        android:paddingStart="16dp"-->
+            <!--                        android:text="Review Frequency"-->
+
+            <!--                        android:textSize="14sp"-->
+            <!--                        android:textStyle="bold"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvRebalancingPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@id/viewLineRebalancingPlan" />-->
+
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvReviewFrequencyDuration"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="20dp"-->
+            <!--                        android:layout_marginTop="6dp"-->
+            <!--                        android:paddingStart="16dp"-->
+            <!--                        android:paddingBottom="16dp"-->
+            <!--                        android:text="Quarterly"-->
+            <!--                        android:textColor="@color/black"-->
+            <!--                        android:textSize="12sp"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvRebalancingPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@id/tvReviewFrequencyPlan" />-->
+
+            <!--                    <ImageView-->
+            <!--                        android:id="@+id/imvCheckReviewPlan"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="10dp"-->
+            <!--                        android:src="@drawable/correct"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvReviewFrequencyPlan"-->
+            <!--                        app:layout_constraintEnd_toStartOf="@+id/tvReviewFrequencyPlan"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvReviewFrequencyPlan" />-->
+
+            <!--                    <View-->
+            <!--                        android:id="@+id/viewLineReviewPlan"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="1dp"-->
+            <!--                        android:layout_marginStart="16dp"-->
+            <!--                        android:layout_marginEnd="29dp"-->
+            <!--                        android:background="@color/dark_green"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/imvCheckPrivateWealthPlan"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@+id/tvReviewFrequencyDuration" />-->
 
 
-            </androidx.cardview.widget.CardView>
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/tvChatExpertPlan"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
 
-            <ImageView
-                android:id="@+id/imvLeftArrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/dark_green"
-                android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewUpperBackgroundColor" />
+            <!--                        android:padding="16dp"-->
+            <!--                        android:text="Chat with Expert"-->
+            <!--                        android:textSize="14sp"-->
+            <!--                        android:textStyle="bold"-->
+            <!--                        app:layout_constraintStart_toStartOf="@id/tvRiskManagement"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@id/viewLineReviewPlan" />-->
 
-            <ImageView
-                android:id="@+id/imvRightArrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/dark_green"
-                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/viewUpperBackgroundColor" />
+            <!--                    <ImageView-->
+            <!--                        android:id="@+id/imvCheckChatExpert"-->
+            <!--                        android:layout_width="0dp"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginStart="10dp"-->
+            <!--                        android:src="@drawable/correct"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/tvChatExpertPlan"-->
+            <!--                        app:layout_constraintEnd_toStartOf="@+id/tvChatExpertPlan"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toTopOf="@id/tvChatExpertPlan" />-->
+
+            <!--                    <androidx.appcompat.widget.AppCompatButton-->
+            <!--                        android:id="@+id/btnGetStarted"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginTop="20dp"-->
+            <!--                        android:textSize="12sp"-->
+            <!--                        android:layout_marginBottom="20dp"-->
+            <!--                        android:padding="15dp"-->
+            <!--                        android:background="@drawable/button_corners"-->
+            <!--                        android:text="Get Started"-->
+            <!--                        android:textColor="@color/white"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                        app:layout_constraintStart_toStartOf="parent"-->
+            <!--                        app:layout_constraintTop_toBottomOf="@id/tvChatExpertPlan" />-->
+            <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+            <!--            </androidx.cardview.widget.CardView>-->
 
             <ImageView
                 android:id="@+id/imvCheckIconComparePlans"
@@ -661,12 +651,12 @@
                 android:src="@drawable/check_mark_small"
                 android:translationZ="2dp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@id/cvServiceOffer"
-                app:layout_constraintTop_toTopOf="@id/cvServiceOffer" />
+                app:layout_constraintEnd_toEndOf="@id/viewPagerMain"
+                app:layout_constraintTop_toTopOf="@id/viewPagerMain" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

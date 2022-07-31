@@ -18,7 +18,8 @@
         <entry key="app/src/main/res/layout/activity_constrain_layout.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3411458333333333" />
         <entry key="app/src/main/res/layout/activity_plan_comparison_pages.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_plans_selector_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_plans_check.xml" value="0.29243266353142366" />
+        <entry key="app/src/main/res/layout/activity_plans_selector_page.xml" value="0.33" />
         <entry key="app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.2380751371886872" />
         <entry key="app/src/main/res/layout/bottom_sheet_plans_info.xml" value="0.1996579734929457" />
         <entry key="app/src/main/res/layout/bottom_sheet_rebalancing_pf.xml" value="0.29243266353142366" />
@@ -27,7 +28,9 @@
         <entry key="app/src/main/res/layout/bottom_sheets.xml" value="0.5" />
         <entry key="app/src/main/res/layout/card_slider.xml" value="0.16246259085079093" />
         <entry key="app/src/main/res/layout/comparison_recycler_view.xml" value="0.25480974775545107" />
+        <entry key="app/src/main/res/layout/plans_recyler.xml" value="0.1" />
         <entry key="app/src/main/res/layout/services_offer_list.xml" value="0.29157759726378796" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.29157759726378796" />
       </map>
     </option>
   </component>
