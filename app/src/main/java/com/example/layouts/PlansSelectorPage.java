@@ -2,14 +2,12 @@ package com.example.layouts;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -27,7 +25,6 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +35,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PlansSelectorPage extends AppCompatActivity {
-    boolean isChecked = false;
     ActivityPlansSelectorPageBinding mBinding;
     ArrayList<PlansModel> plansModel = new ArrayList<>();
     int pagePosition = 0;
-    boolean checkCompare = false;
-    boolean checkPlansIcon = false;
-    List<Integer> comparePages = new ArrayList<>();
     boolean showCheckBox = true;
     ViewPagerAdapter mViewPagerAdapter;
 
@@ -92,18 +85,20 @@ public class PlansSelectorPage extends AppCompatActivity {
             }
         });
 
-        mBinding.tvWantToComparePlans.setOnClickListener(v -> {
-            checkCompare = !checkCompare;
-            if (checkCompare) {
-                mBinding.tvWantToComparePlans.setText("Select any two plans");
-                mViewPagerAdapter.showSelected(1);
-            } else {
-                mBinding.tvWantToComparePlans.setText("Want to compare plans?");
-                mViewPagerAdapter.showSelected(0);
-
+        mBinding.tvWantToComparePlans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public synchronized void onClick(View v) {
+                if (showCheckBox) {
+                    showCheckBox = false;
+                    mBinding.tvWantToComparePlans.setText("Select any two plans");
+                    mViewPagerAdapter.showSelected(1);
+                } else {
+                    showCheckBox = true;
+                    mBinding.tvWantToComparePlans.setText("Want to compare plans?");
+                    mViewPagerAdapter.showSelected(0);
+                }
             }
         });
-
     }
 
     private void changeDataOnPlansScrolled(int position) {
@@ -123,11 +118,30 @@ public class PlansSelectorPage extends AppCompatActivity {
         } else
             planTypeValue = "Check out our excellent group of trained Wealth Managers";
 
-        mBinding.tvPlanName.setText(plansModel.get(position).getCategory_name());
-        mBinding.tvPriceText.setText("₹ " + plansModel.get(position).getMonthly_amount());
+        if(pagePosition ==6) {
+            mBinding.tvPlanName.setText(plansModel.get(position).getCategory_name());
+            mBinding.tvPriceText.setText(plansModel.get(position).getMonthly_amount());
+            mBinding.tvPriceDuration.setVisibility(View.INVISIBLE);
+            mBinding.imvBilledDurInfo.setVisibility(View.INVISIBLE);
+            mBinding.tvBilledDuration.setText("Get a completely customised \nfinancial plan according to \nyour unique requirement");
+        }
+        else if (pagePosition ==0) {
+            mBinding.tvPlanName.setText(plansModel.get(position).getCategory_name());
+            mBinding.tvPriceText.setText(plansModel.get(position).getMonthly_amount());
+            mBinding.imvBilledDurInfo.setVisibility(View.INVISIBLE);
+            mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
+            mBinding.tvBilledDuration.setText(durationValue);
+        }
+        else {
+            mBinding.tvPlanName.setText(plansModel.get(position).getCategory_name());
+            mBinding.tvPriceText.setText(plansModel.get(position).getMonthly_amount());
+            mBinding.imvBilledDurInfo.setVisibility(View.VISIBLE);
+            mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
+            mBinding.tvBilledDuration.setText(durationValue);
+        }
+
         mBinding.tvPricePortfolioSize.setText("₹ " + plansModel.get(position).getPortfolio_size());
         mBinding.tvRoboAdvisoryExperts.setText(planTypeValue);
-        mBinding.tvBilledDuration.setText(durationValue);
 
     }
 

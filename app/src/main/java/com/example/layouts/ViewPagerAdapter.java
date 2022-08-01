@@ -29,7 +29,6 @@ class ViewPagerAdapter extends PagerAdapter {
     int clickCompare = 1;
     boolean checkPlansIcon = false;
     List<Integer> comparePages = new ArrayList<>();
-
     public ViewPagerAdapter(Context context, ArrayList<PlansModel> plansModel) {
         this.context = context;
         this.plansModel = plansModel;
@@ -50,11 +49,10 @@ class ViewPagerAdapter extends PagerAdapter {
         if (shouldShow == 1) {
             clickCompare = 1;
             System.out.println("Click Compare:" + clickCompare);
-        } else {
+        } else if (shouldShow == 0) {
             clickCompare = 0;
             System.out.println("Click Compare:" + clickCompare);
         }
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -145,29 +143,6 @@ class ViewPagerAdapter extends PagerAdapter {
         } else if (clickCompare == 0) {
             ivCheckPlanComparison.setVisibility(View.INVISIBLE);
         }
-
-
-//        ivCheckPlanComparison.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (isChecked) {
-//                    selectedplansModel.add(plansModel.get(position));
-//                    if (selectedplansModel.size() >= 2) {
-//                        Intent intent = new Intent(context, PlanComparisonPages.class);
-//                        intent.putExtra("selected_list", (Parcelable) selectedplansModel);
-//                        context.startActivity(intent);
-//                    }
-//                } else {
-//                    if (selectedplansModel != null && selectedplansModel.size() > 0) {
-//                        for (int i = 0; i < selectedplansModel.size(); i++) {
-//                            if (selectedplansModel.get(i).getPlan_id().equalsIgnoreCase(plansModel.get(position).getPlan_id())) {
-//                                selectedplansModel.remove(i);
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        });
 
 
         ivInfoMoneyTaxFilling.setOnClickListener(v -> {
