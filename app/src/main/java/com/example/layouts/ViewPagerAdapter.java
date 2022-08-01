@@ -3,12 +3,9 @@ package com.example.layouts;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -17,7 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.layouts.Models.PlansModel;
-import com.example.layouts.databinding.BottomSheetDialogBinding;
 import com.example.layouts.databinding.BottomSheetPlansInfoBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -30,8 +26,7 @@ class ViewPagerAdapter extends PagerAdapter {
     Context context;
     LayoutInflater mLayoutInflater;
     List<PlansModel> plansModel;
-    int clickCompare =0;
-    boolean checkCompare = false;
+    int clickCompare = 1;
     boolean checkPlansIcon = false;
     List<Integer> comparePages = new ArrayList<>();
 
@@ -45,9 +40,21 @@ class ViewPagerAdapter extends PagerAdapter {
     public int getCount() {
         return plansModel.size();
     }
+
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == ((ConstraintLayout) object);
+    }
+
+    public void showSelected(int shouldShow) {
+        if (shouldShow == 1) {
+            clickCompare = 1;
+            System.out.println("Click Compare:" + clickCompare);
+        } else {
+            clickCompare = 0;
+            System.out.println("Click Compare:" + clickCompare);
+        }
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -55,13 +62,13 @@ class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         AppCompatImageView ivCorrectFinancialPlanning, ivWealthManagement, ivInfoMoneyWealth, ivTaxAdvisory,
                 ivInfoTaxAdvisory, ivTaxFiling, ivInfoMoneyTaxFilling, ivRiskManagement, ivRebalancing,
-                ivInfoMoneyRebalancing, ivReviewFrequency, ivChat,ivCheckPlanComparison;
+                ivInfoMoneyRebalancing, ivReviewFrequency, ivChat, ivCheckPlanComparison;
         AppCompatTextView tvFinancialPlanning, tvWealthManagement, tvTaxAdvisory, tvTaxFiling, tvRiskManagement,
                 tvRebalancing, tvReviewFrequency, tvFrequency, tvChat;
         View viewFinancialPlanning, viewWealthManagement, viewTaxAdvisory, viewTaxFiling, viewRiskManagement,
                 viewRebalancing, viewReviewFrequency;
 //        CheckBox ivCheckPlanComparison;
-        System.out.println("Plans mooooooodlelll"+ plansModel.get(position).getCategory_name());
+        System.out.println("Plans mooooooodlelll" + plansModel.get(position).getCategory_name());
 
         View view = mLayoutInflater.inflate(R.layout.plans_recyler, container, false);
         PlansModel model = plansModel.get(position);
@@ -98,20 +105,14 @@ class ViewPagerAdapter extends PagerAdapter {
 
         ivInfoMoneyWealth.setOnClickListener(v -> {
             final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
-        BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(context));
-        bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
+            BottomSheetPlansInfoBinding mBottomSheetBinding = BottomSheetPlansInfoBinding.inflate(LayoutInflater.from(context));
+            bottomSheetDialog.setContentView(mBottomSheetBinding.getRoot());
 
-        mBottomSheetBinding.tvBSContent.setText("The wealth management service offered under this plan includes only Direct Mutual Funds.");
-        mBottomSheetBinding.tvBSHeadLine.setText("Private Wealth Management");
-        bottomSheetDialog.show();
+            mBottomSheetBinding.tvBSContent.setText("The wealth management service offered under this plan includes only Direct Mutual Funds.");
+            mBottomSheetBinding.tvBSHeadLine.setText("Private Wealth Management");
+            bottomSheetDialog.show();
         });
 
-//        if(clickCompare ==1) {
-//            ivCheckPlanComparison.setVisibility(View.VISIBLE);
-//        }
-//        else {
-//            ivCheckPlanComparison.setVisibility(View.INVISIBLE);
-//        }
 
         ivCheckPlanComparison.setOnClickListener(v -> {
             checkPlansIcon = !checkPlansIcon;
@@ -137,6 +138,14 @@ class ViewPagerAdapter extends PagerAdapter {
                 comparePages.remove(Integer.valueOf(position));
             }
         });
+
+        if (clickCompare == 1) {
+            ivCheckPlanComparison.setVisibility(View.VISIBLE);
+
+        } else if (clickCompare == 0) {
+            ivCheckPlanComparison.setVisibility(View.INVISIBLE);
+        }
+
 
 //        ivCheckPlanComparison.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -181,16 +190,14 @@ class ViewPagerAdapter extends PagerAdapter {
             bottomSheetDialog.show();
         });
 
-          if (comparePages.contains(Integer.valueOf(position))) {
+        if (comparePages.contains(Integer.valueOf(position))) {
             ivCheckPlanComparison.setBackgroundResource(R.drawable.correct);
-            checkCompare = true;
             checkPlansIcon = true;
             if (checkPlansIcon) {
                 System.out.println("Checked");
                 ivCheckPlanComparison.setBackgroundResource(R.drawable.correct);
             }
         } else {
-            checkCompare = false;
             checkPlansIcon = false;
             ivCheckPlanComparison.setBackgroundResource(R.drawable.check_mark_small);
         }
@@ -256,15 +263,6 @@ class ViewPagerAdapter extends PagerAdapter {
         Objects.requireNonNull(container).addView(view);
 
         return view;
-    }
-
-    public void showSelected(int shouldShow) {
-        if (shouldShow == 1) {
-            clickCompare=1;
-        } else {
-            clickCompare=0;
-        }
-        notifyDataSetChanged();
     }
 
     @Override
