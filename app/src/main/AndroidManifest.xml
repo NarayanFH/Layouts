@@ -17,9 +17,6 @@
         android:theme="@style/Theme.Layouts"
         tools:targetApi="31">
         <activity
-            android:name=".PlansCheck"
-            android:exported="false" />
-        <activity
             android:name=".PlanComparisonPages"
             android:exported="false" />
         <activity

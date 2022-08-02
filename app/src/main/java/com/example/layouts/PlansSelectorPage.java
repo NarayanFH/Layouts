@@ -127,14 +127,14 @@ public class PlansSelectorPage extends AppCompatActivity {
         }
         else if (pagePosition ==0) {
             mBinding.tvPlanName.setText(plansModel.get(position).getCategory_name());
-            mBinding.tvPriceText.setText(plansModel.get(position).getMonthly_amount());
+            mBinding.tvPriceText.setText("₹ " +plansModel.get(position).getMonthly_amount());
             mBinding.imvBilledDurInfo.setVisibility(View.INVISIBLE);
             mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
             mBinding.tvBilledDuration.setText(durationValue);
         }
         else {
             mBinding.tvPlanName.setText(plansModel.get(position).getCategory_name());
-            mBinding.tvPriceText.setText(plansModel.get(position).getMonthly_amount());
+            mBinding.tvPriceText.setText("₹ " +plansModel.get(position).getMonthly_amount());
             mBinding.imvBilledDurInfo.setVisibility(View.VISIBLE);
             mBinding.tvPriceDuration.setVisibility(View.VISIBLE);
             mBinding.tvBilledDuration.setText(durationValue);

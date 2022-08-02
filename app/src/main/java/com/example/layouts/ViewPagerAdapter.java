@@ -51,8 +51,10 @@ class ViewPagerAdapter extends PagerAdapter {
             System.out.println("Click Compare:" + clickCompare);
         } else if (shouldShow == 0) {
             clickCompare = 0;
+            int var = clickCompare;
             System.out.println("Click Compare:" + clickCompare);
         }
+        notifyAll();
     }
 
     @NonNull

@@ -60,6 +60,7 @@ public class PlanComparisonPages extends AppCompatActivity {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                onBackPressed();
                 Toast.makeText(getApplicationContext(),"Back to Pricing page",Toast.LENGTH_SHORT).show();
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             }
